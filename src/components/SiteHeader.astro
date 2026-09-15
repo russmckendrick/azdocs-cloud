@@ -1,0 +1,64 @@
+---
+const currentPath = Astro.url.pathname;
+const onDocs = currentPath.startsWith("/docs");
+---
+
+<header class="site-header" data-site-header>
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="azdocs home">
+      <img src="/docs/marks/assets/azdocs-lockup-reversed.svg" alt="azdocs" width="172" height="69" />
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="/#product">Product</a>
+      <a href="/#exports">Exports</a>
+      <a href="/docs/" aria-current={onDocs ? "page" : undefined}>Documentation</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="github-link" href="https://github.com/russmckendrick/azdocs" target="_blank" rel="noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.69c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.55 9.55 0 0 1 12 7.01c.85 0 1.71.11 2.51.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86V21c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" />
+        </svg>
+        <span>GitHub</span>
+      </a>
+      <a class="header-cta" href="/docs/usage/installation/">Install</a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-button>
+        <span class="sr-only">Open menu</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation" data-mobile-menu hidden>
+    <a href="/#product">Product</a>
+    <a href="/#exports">Exports</a>
+    <a href="/docs/">Documentation</a>
+    <a href="https://github.com/russmckendrick/azdocs">GitHub</a>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-site-header]");
+  const menuButton = document.querySelector<HTMLButtonElement>("[data-menu-button]");
+  const mobileMenu = document.querySelector<HTMLElement>("[data-mobile-menu]");
+
+  menuButton?.addEventListener("click", () => {
+    const expanded = menuButton.getAttribute("aria-expanded") === "true";
+    menuButton.setAttribute("aria-expanded", String(!expanded));
+    if (mobileMenu) mobileMenu.hidden = expanded;
+  });
+
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menuButton?.setAttribute("aria-expanded", "false");
+      mobileMenu.hidden = true;
+    });
+  });
+
+  const updateHeader = () => header?.classList.toggle("is-scrolled", window.scrollY > 12);
+  updateHeader();
+  window.addEventListener("scroll", updateHeader, { passive: true });
+</script>

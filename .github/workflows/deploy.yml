@@ -1,0 +1,103 @@
+name: "🚀 Build and deploy"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+    inputs:
+      azdocs_ref:
+        description: "azdocs branch, tag, or commit to publish"
+        required: false
+        default: "main"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: "🏗️ Build current product and site"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "📥 Check out site"
+        uses: actions/checkout@v7
+        with:
+          path: site
+
+      - name: "📥 Check out azdocs"
+        uses: actions/checkout@v7
+        with:
+          repository: russmckendrick/azdocs
+          ref: ${{ inputs.azdocs_ref || 'main' }}
+          path: azdocs
+
+      - name: "🦀 Set up Rust"
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: "📦 Set up pnpm"
+        uses: pnpm/action-setup@v6
+        with:
+          version: 10
+
+      - name: "🟢 Set up Node.js"
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: |
+            site/pnpm-lock.yaml
+            azdocs/desktop/pnpm-lock.yaml
+
+      - name: "📦 Install site dependencies"
+        working-directory: site
+        run: pnpm install --frozen-lockfile
+
+      - name: "📦 Install desktop dependencies"
+        working-directory: azdocs/desktop
+        run: pnpm install --frozen-lockfile
+
+      - name: "📥 Fetch report renderer dependencies"
+        working-directory: azdocs
+        run: cargo fetch --locked
+
+      - name: "🖼️ Install PDF page renderer"
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+
+      - name: "🏗️ Build site from current azdocs"
+        working-directory: site
+        env:
+          AZDOCS_SOURCE: ${{ github.workspace }}/azdocs
+        run: pnpm build
+
+      - name: "📤 Save static site"
+        uses: actions/upload-artifact@v7
+        with:
+          name: azdocs-cloud-dist
+          path: site/dist
+          if-no-files-found: error
+          retention-days: 1
+
+  deploy:
+    name: "☁️ Deploy to Cloudflare"
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: "📥 Check out site configuration"
+        uses: actions/checkout@v7
+
+      - name: "📥 Restore static site"
+        uses: actions/download-artifact@v8
+        with:
+          name: azdocs-cloud-dist
+          path: dist
+
+      - name: "☁️ Deploy current build"
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy

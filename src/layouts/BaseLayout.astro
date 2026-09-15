@@ -1,0 +1,54 @@
+---
+import SiteHeader from "../components/SiteHeader.astro";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  className?: string;
+  showHeader?: boolean;
+}
+
+const {
+  title = "azdocs — Your Azure estate, documented",
+  description = "Collect an Azure estate once, explore the saved evidence, trace relationships, and export reports and diagrams offline.",
+  className = "",
+  showHeader = true
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#07111e" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/docs/marks/assets/azdocs-mark-reversed.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL("/docs/marks/assets/azdocs-app-icon-dark.svg", Astro.site)} />
+    <meta name="twitter:card" content="summary" />
+    <title>{title}</title>
+  </head>
+  <body class={className}>
+    <!--
+    THESIS: The product is the proof: scrolling builds the current azdocs desktop workspace from its own Azure icons, fixture data, views, and exports.
+    OWN-WORLD: A dark product theatre surrounds the application's real pale editorial workspace, dark masthead grammar, Azure service artwork, and stored-evidence language.
+    STORY: The estate arrives first, relationships assemble next, findings retain their evidence, and the export composer hands the snapshot onward.
+    FIRST VIEWPORT: A single direct claim yields to a large sticky recreation of the application; the workspace becomes the page as the visitor scrolls.
+    FORM: Scroll-led product theatre, pinned by the user over the earlier split hero; the existing seed b559979d remains only as implementation lineage.
+    FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+    -->
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    {showHeader && <SiteHeader />}
+    <main id="main-content">
+      <slot />
+    </main>
+  </body>
+</html>

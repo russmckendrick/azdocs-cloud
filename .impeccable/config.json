@@ -1,0 +1,263 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-color",
+        "value": "rgb(24 143 220 / 13%)",
+        "createdAt": "2026-09-14T18:24:38.187Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgb(0 0 0 / 46%)",
+        "createdAt": "2026-09-14T18:24:38.294Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgb(0 68 116 / 18%)",
+        "createdAt": "2026-09-14T18:24:38.393Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgb(11 93 168 / 8%)",
+        "createdAt": "2026-09-14T18:24:38.487Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#a83a22",
+        "createdAt": "2026-09-14T18:24:38.581Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#8a6d00",
+        "createdAt": "2026-09-14T18:24:38.677Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#0b5da8",
+        "createdAt": "2026-09-14T18:24:38.773Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgb(90 100 112 / 7%)",
+        "createdAt": "2026-09-14T18:24:38.866Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgb(11 93 168 / 28%)",
+        "createdAt": "2026-09-14T18:24:38.962Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#107c10",
+        "createdAt": "2026-09-14T18:24:39.059Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#0078d4",
+        "createdAt": "2026-09-14T18:24:39.158Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#b146c2",
+        "createdAt": "2026-09-14T18:24:39.254Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#d8d2c6",
+        "createdAt": "2026-09-14T18:24:39.350Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#faf8f4",
+        "createdAt": "2026-09-14T18:24:39.445Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#c8c2b7",
+        "createdAt": "2026-09-14T18:24:39.539Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#5a6470",
+        "createdAt": "2026-09-14T18:24:39.635Z",
+        "reason": "The product theatre reproduces the current azdocs application palette and fixture graph signals."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "plex serif",
+        "createdAt": "2026-09-14T18:24:39.729Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "4rem",
+        "createdAt": "2026-09-14T18:24:39.827Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "1.2rem",
+        "createdAt": "2026-09-14T18:24:39.922Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "20px",
+        "createdAt": "2026-09-14T18:24:40.016Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "9px",
+        "createdAt": "2026-09-14T18:24:40.114Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "10px",
+        "createdAt": "2026-09-14T18:24:40.209Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "8.5px",
+        "createdAt": "2026-09-14T18:24:40.302Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "29px",
+        "createdAt": "2026-09-14T18:24:40.396Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "14px",
+        "createdAt": "2026-09-14T18:24:40.491Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "8px",
+        "createdAt": "2026-09-14T18:24:40.585Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "24px",
+        "createdAt": "2026-09-14T18:24:40.679Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "9.5px",
+        "createdAt": "2026-09-14T18:24:40.772Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "7.5px",
+        "createdAt": "2026-09-14T18:24:40.864Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "7px",
+        "createdAt": "2026-09-14T18:24:40.957Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "18px",
+        "createdAt": "2026-09-14T18:24:41.056Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "13px",
+        "createdAt": "2026-09-14T18:24:41.153Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "1.35rem",
+        "createdAt": "2026-09-14T18:24:41.250Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": ".82rem",
+        "createdAt": "2026-09-14T18:24:41.343Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "2.8rem",
+        "createdAt": "2026-09-14T18:24:41.437Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "2.55rem",
+        "createdAt": "2026-09-14T18:24:41.529Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "3px",
+        "createdAt": "2026-09-14T18:24:41.623Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "10px",
+        "createdAt": "2026-09-14T18:24:41.720Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "2px",
+        "createdAt": "2026-09-14T18:24:41.816Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "999px",
+        "createdAt": "2026-09-14T18:24:41.909Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "14px",
+        "createdAt": "2026-09-14T18:24:42.004Z",
+        "reason": "The product theatre reproduces the current azdocs dense desktop interface and user-pinned scroll composition."
+      },
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "src/styles/product-story.css"
+        ],
+        "createdAt": "2026-09-14T19:07:47.087Z",
+        "reason": "Agent review: the only tiled grid in this stylesheet is az-map-canvas, the Azure relationship-map surface explicitly requested by the user."
+      }
+    ]
+  }
+}

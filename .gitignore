@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.azdocs-source/
+public/docs/
+public/fonts/
+public/azure-icons/
+public/demo/
+public/product-exports/pages/
+graphify-out/

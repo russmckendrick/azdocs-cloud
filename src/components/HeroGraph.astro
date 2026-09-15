@@ -1,0 +1,83 @@
+<div
+  class="hero-graph"
+  data-hero-graph
+  role="img"
+  aria-label="Azure subscription resources assembling into a connected estate map"
+>
+  <div class="graph-chrome">
+    <span>estate.map · illustrative</span>
+    <span class="graph-state"><i></i> saved snapshot</span>
+  </div>
+
+  <div class="graph-stage">
+    <div class="map-boundary boundary-estate">Subscription</div>
+    <div class="map-boundary boundary-group">rg-platform</div>
+    <div class="map-boundary boundary-network">vnet-hub</div>
+
+    <svg class="graph-routes" viewBox="0 0 700 560" preserveAspectRatio="none" aria-hidden="true">
+      <path class="route route-a" d="M348 88 C275 115 218 148 177 198" />
+      <path class="route route-b" d="M348 88 C377 135 391 166 390 220" />
+      <path class="route route-c" d="M177 198 C180 285 197 350 234 403" />
+      <path class="route route-d" d="M390 220 C353 284 301 333 234 403" />
+      <path class="route route-e" d="M390 220 C464 264 505 322 516 397" />
+      <path class="route route-f" d="M390 220 C510 220 572 246 602 294" />
+      <path class="route route-g" d="M516 397 C559 422 598 445 630 482" />
+      <circle class="packet packet-a" r="3.5" />
+      <circle class="packet packet-b" r="3" />
+    </svg>
+
+    <div class="map-node node-subscription" style="--from-x: 80px; --from-y: -170px; --delay: 120ms">
+      <span class="icon-shell"><img src="/azure-icons/subscription.svg" alt="" /></span>
+      <span><b>Production</b><small>Subscription</small></span>
+    </div>
+    <div class="map-node node-group" style="--from-x: -210px; --from-y: -60px; --delay: 240ms">
+      <span class="icon-shell"><img src="/azure-icons/resource-group.svg" alt="" /></span>
+      <span><b>rg-platform</b><small>Resource group</small></span>
+    </div>
+    <div class="map-node node-vnet" style="--from-x: 35px; --from-y: -210px; --delay: 360ms">
+      <span class="icon-shell"><img src="/azure-icons/virtual-network.svg" alt="" /></span>
+      <span><b>vnet-hub</b><small>Virtual network</small></span>
+    </div>
+    <div class="map-node node-vm" style="--from-x: -220px; --from-y: 90px; --delay: 480ms">
+      <span class="icon-shell"><img src="/azure-icons/virtual-machine.svg" alt="" /></span>
+      <span><b>vm-app-01</b><small>Virtual machine</small></span>
+    </div>
+    <div class="map-node node-app" style="--from-x: 190px; --from-y: 120px; --delay: 600ms">
+      <span class="icon-shell"><img src="/azure-icons/app-service.svg" alt="" /></span>
+      <span><b>api-prod</b><small>App service</small></span>
+    </div>
+    <div class="map-node node-sql" style="--from-x: 230px; --from-y: -80px; --delay: 720ms">
+      <span class="icon-shell"><img src="/azure-icons/sql-database.svg" alt="" /></span>
+      <span><b>sqldb-prod</b><small>SQL database</small></span>
+    </div>
+    <div class="map-node node-storage" style="--from-x: 180px; --from-y: 180px; --delay: 840ms">
+      <span class="icon-shell"><img src="/azure-icons/storage-account.svg" alt="" /></span>
+      <span><b>starchive</b><small>Storage account</small></span>
+    </div>
+
+    <div class="graph-readout" aria-hidden="true">
+      <span>stored evidence</span>
+      <span>counts preserved</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const graph = document.querySelector<HTMLElement>("[data-hero-graph]");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (graph && !reduceMotion.matches) {
+    requestAnimationFrame(() => graph.classList.add("motion-ready"));
+    graph.addEventListener("pointermove", (event) => {
+      const bounds = graph.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+      const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+      graph.style.setProperty("--graph-rx", `${(-y * 1.4).toFixed(2)}deg`);
+      graph.style.setProperty("--graph-ry", `${(x * 1.8).toFixed(2)}deg`);
+    });
+    graph.addEventListener("pointerleave", () => {
+      graph.style.setProperty("--graph-rx", "0deg");
+      graph.style.setProperty("--graph-ry", "0deg");
+    });
+  }
+</script>

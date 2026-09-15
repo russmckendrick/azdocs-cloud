@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-15T00:00:00.000Z",
+  "title": "Design System: azdocs.cloud",
+  "extensions": {
+    "colorMeta": {
+      "theatre-void": { "displayName": "Theatre Void", "canonical": "#07111e", "tonalRamp": ["oklch(from #07111e 15% c h)", "oklch(from #07111e 26% c h)", "oklch(from #07111e 38% c h)", "oklch(from #07111e 49% c h)", "oklch(from #07111e 61% c h)", "oklch(from #07111e 72% c h)", "oklch(from #07111e 84% c h)", "oklch(from #07111e 95% c h)"] },
+      "theatre-deep": { "displayName": "Theatre Deep", "canonical": "#030a13", "tonalRamp": ["oklch(from #030a13 15% c h)", "oklch(from #030a13 26% c h)", "oklch(from #030a13 38% c h)", "oklch(from #030a13 49% c h)", "oklch(from #030a13 61% c h)", "oklch(from #030a13 72% c h)", "oklch(from #030a13 84% c h)", "oklch(from #030a13 95% c h)"] },
+      "theatre-panel": { "displayName": "Theatre Panel", "canonical": "#0c1928", "tonalRamp": ["oklch(from #0c1928 15% c h)", "oklch(from #0c1928 26% c h)", "oklch(from #0c1928 38% c h)", "oklch(from #0c1928 49% c h)", "oklch(from #0c1928 61% c h)", "oklch(from #0c1928 72% c h)", "oklch(from #0c1928 84% c h)", "oklch(from #0c1928 95% c h)"] },
+      "theatre-panel-soft": { "displayName": "Theatre Panel Soft", "canonical": "#0a1624", "tonalRamp": ["oklch(from #0a1624 15% c h)", "oklch(from #0a1624 26% c h)", "oklch(from #0a1624 38% c h)", "oklch(from #0a1624 49% c h)", "oklch(from #0a1624 61% c h)", "oklch(from #0a1624 72% c h)", "oklch(from #0a1624 84% c h)", "oklch(from #0a1624 95% c h)"] },
+      "theatre-ink": { "displayName": "Theatre Ink", "canonical": "#f4f8fc", "tonalRamp": ["oklch(from #f4f8fc 15% c h)", "oklch(from #f4f8fc 26% c h)", "oklch(from #f4f8fc 38% c h)", "oklch(from #f4f8fc 49% c h)", "oklch(from #f4f8fc 61% c h)", "oklch(from #f4f8fc 72% c h)", "oklch(from #f4f8fc 84% c h)", "oklch(from #f4f8fc 95% c h)"] },
+      "theatre-body": { "displayName": "Theatre Body", "canonical": "#c4d1df", "tonalRamp": ["oklch(from #c4d1df 15% c h)", "oklch(from #c4d1df 26% c h)", "oklch(from #c4d1df 38% c h)", "oklch(from #c4d1df 49% c h)", "oklch(from #c4d1df 61% c h)", "oklch(from #c4d1df 72% c h)", "oklch(from #c4d1df 84% c h)", "oklch(from #c4d1df 95% c h)"] },
+      "theatre-muted": { "displayName": "Theatre Muted", "canonical": "#8ea1b5", "tonalRamp": ["oklch(from #8ea1b5 15% c h)", "oklch(from #8ea1b5 26% c h)", "oklch(from #8ea1b5 38% c h)", "oklch(from #8ea1b5 49% c h)", "oklch(from #8ea1b5 61% c h)", "oklch(from #8ea1b5 72% c h)", "oklch(from #8ea1b5 84% c h)", "oklch(from #8ea1b5 95% c h)"] },
+      "theatre-faint": { "displayName": "Theatre Faint", "canonical": "#768ba1", "tonalRamp": ["oklch(from #768ba1 15% c h)", "oklch(from #768ba1 26% c h)", "oklch(from #768ba1 38% c h)", "oklch(from #768ba1 49% c h)", "oklch(from #768ba1 61% c h)", "oklch(from #768ba1 72% c h)", "oklch(from #768ba1 84% c h)", "oklch(from #768ba1 95% c h)"] },
+      "theatre-line": { "displayName": "Theatre Line", "canonical": "#20354b", "tonalRamp": ["oklch(from #20354b 15% c h)", "oklch(from #20354b 26% c h)", "oklch(from #20354b 38% c h)", "oklch(from #20354b 49% c h)", "oklch(from #20354b 61% c h)", "oklch(from #20354b 72% c h)", "oklch(from #20354b 84% c h)", "oklch(from #20354b 95% c h)"] },
+      "theatre-line-strong": { "displayName": "Theatre Line Strong", "canonical": "#31506e", "tonalRamp": ["oklch(from #31506e 15% c h)", "oklch(from #31506e 26% c h)", "oklch(from #31506e 38% c h)", "oklch(from #31506e 49% c h)", "oklch(from #31506e 61% c h)", "oklch(from #31506e 72% c h)", "oklch(from #31506e 84% c h)", "oklch(from #31506e 95% c h)"] },
+      "azure-action": { "displayName": "Azure Action", "canonical": "#168fe5", "tonalRamp": ["oklch(from #168fe5 15% c h)", "oklch(from #168fe5 26% c h)", "oklch(from #168fe5 38% c h)", "oklch(from #168fe5 49% c h)", "oklch(from #168fe5 61% c h)", "oklch(from #168fe5 72% c h)", "oklch(from #168fe5 84% c h)", "oklch(from #168fe5 95% c h)"] },
+      "azure-signal": { "displayName": "Azure Signal", "canonical": "#49b6ff", "tonalRamp": ["oklch(from #49b6ff 15% c h)", "oklch(from #49b6ff 26% c h)", "oklch(from #49b6ff 38% c h)", "oklch(from #49b6ff 49% c h)", "oklch(from #49b6ff 61% c h)", "oklch(from #49b6ff 72% c h)", "oklch(from #49b6ff 84% c h)", "oklch(from #49b6ff 95% c h)"] },
+      "app-dark": { "displayName": "App Dark", "canonical": "#101820", "tonalRamp": ["oklch(from #101820 15% c h)", "oklch(from #101820 26% c h)", "oklch(from #101820 38% c h)", "oklch(from #101820 49% c h)", "oklch(from #101820 61% c h)", "oklch(from #101820 72% c h)", "oklch(from #101820 84% c h)", "oklch(from #101820 95% c h)"] },
+      "state-green": { "displayName": "State Green", "canonical": "#53d18d", "tonalRamp": ["oklch(from #53d18d 15% c h)", "oklch(from #53d18d 26% c h)", "oklch(from #53d18d 38% c h)", "oklch(from #53d18d 49% c h)", "oklch(from #53d18d 61% c h)", "oklch(from #53d18d 72% c h)", "oklch(from #53d18d 84% c h)", "oklch(from #53d18d 95% c h)"] },
+      "severity-amber": { "displayName": "Severity Amber", "canonical": "#f3bf4d", "tonalRamp": ["oklch(from #f3bf4d 15% c h)", "oklch(from #f3bf4d 26% c h)", "oklch(from #f3bf4d 38% c h)", "oklch(from #f3bf4d 49% c h)", "oklch(from #f3bf4d 61% c h)", "oklch(from #f3bf4d 72% c h)", "oklch(from #f3bf4d 84% c h)", "oklch(from #f3bf4d 95% c h)"] },
+      "severity-coral": { "displayName": "Severity Coral", "canonical": "#ff8066", "tonalRamp": ["oklch(from #ff8066 15% c h)", "oklch(from #ff8066 26% c h)", "oklch(from #ff8066 38% c h)", "oklch(from #ff8066 49% c h)", "oklch(from #ff8066 61% c h)", "oklch(from #ff8066 72% c h)", "oklch(from #ff8066 84% c h)", "oklch(from #ff8066 95% c h)"] }
+    },
+    "typographyMeta": {
+      "display": { "fontFamily": "Plex, Segoe UI, system-ui, sans-serif", "fontSize": "clamp(4rem, 8.4vw, 6rem)", "fontWeight": 600, "lineHeight": 0.92, "letterSpacing": "-0.04em", "role": "Landing statement" },
+      "headline": { "fontFamily": "Plex, Segoe UI, system-ui, sans-serif", "fontSize": "clamp(2.8rem, 5.6vw, 5rem)", "fontWeight": 600, "lineHeight": 0.98, "letterSpacing": "-0.04em", "role": "Section headline" },
+      "stage-title": { "fontFamily": "Plex, Segoe UI, system-ui, sans-serif", "fontSize": "clamp(1.85rem, 3vw, 2.8rem)", "fontWeight": 600, "lineHeight": 1.02, "letterSpacing": "-0.035em", "role": "Product scene title" },
+      "body": { "fontFamily": "Plex, Segoe UI, system-ui, sans-serif", "fontSize": "1rem", "fontWeight": 400, "lineHeight": 1.6, "role": "Body and actions" },
+      "mono": { "fontFamily": "Plex Mono, ui-monospace, monospace", "fontSize": "0.78rem", "fontWeight": 400, "lineHeight": 1.6, "role": "Revisions and formats" },
+      "cue": { "fontFamily": "Plex, Segoe UI, system-ui, sans-serif", "fontSize": "0.69rem", "fontWeight": 400, "lineHeight": 1.35, "role": "Scroll and stage cues" }
+    },
+    "shadows": {
+      "app-stage": "0 48px 120px rgb(0 0 0 / 52%), 0 12px 42px rgb(0 76 126 / 20%)",
+      "pdf-page": "0 16px 38px rgb(0 0 0 / 30%)",
+      "modal": "0 48px 120px rgb(0 0 0 / 58%), 0 12px 42px rgb(0 76 126 / 18%)"
+    },
+    "motion": {
+      "easeOut": "cubic-bezier(.16, 1, .3, 1)",
+      "hoverDuration": "180ms",
+      "stageTrack": "480svh",
+      "reducedMotion": "Collapse the scroll track, show the app immediately, and enable direct iframe interaction."
+    },
+    "breakpoints": { "mobile": "640px", "tablet": "900px" },
+    "components": {
+      "primary-button": { "background": "{colors.azure-action}", "color": "{colors.theatre-ink}", "height": "50px", "radius": "11px", "focus": "2px {colors.azure-signal}" },
+      "secondary-button": { "background": "{colors.theatre-panel-soft}", "color": "{colors.theatre-ink}", "height": "50px", "radius": "11px", "focus": "2px {colors.azure-signal}" },
+      "app-window": { "background": "{colors.app-dark}", "width": "min(1220px, calc(100vw - 70px))", "radius": "14px", "shadow": "{shadows.app-stage}" },
+      "pdf-page": { "background": "#ffffff", "aspectRatio": "794 / 1123", "columns": "3 desktop, 2 tablet, 1 mobile", "interaction": "Open the corresponding page in the modal" },
+      "pdf-modal": { "background": "{colors.theatre-deep}", "radius": "14px", "shadow": "{shadows.modal}", "interaction": "Close, previous, next, arrow keys, and open original PDF" }
+    },
+    "narrative": {
+      "northStar": "The Workspace Takes the Stage",
+      "overview": "A deep-midnight product theatre built around the current desktop application and the current generated assessment.",
+      "keyCharacteristics": ["real product first", "scroll-driven app scenes", "three-column PDF contact sheet", "source-generated artifacts"],
+      "rules": ["The desktop app owns its internal visual system.", "The PDF is the primary report proof and HTML remains available.", "Build and deployment regenerate source-driven artifacts before Astro."],
+      "dos": ["Use current desktop and report output.", "Keep evidence and provenance visible.", "Respect reduced motion and keyboard navigation."],
+      "donts": ["Do not recreate desktop screens by hand.", "Do not embed a giant browser PDF page.", "Do not bypass freshness checks."]
+    }
+  }
+}

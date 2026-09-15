@@ -1,0 +1,178 @@
+---
+import type { MarkdownHeading } from "astro";
+import BaseLayout from "./BaseLayout.astro";
+import { docHref, docSection, docsBySection, docTitle, orderedDocs, type DocsEntry } from "../lib/docs";
+
+interface Props {
+  entry: DocsEntry;
+  entries: DocsEntry[];
+  headings: MarkdownHeading[];
+}
+
+const { entry, entries, headings } = Astro.props;
+const title = docTitle(entry);
+const groups = docsBySection(entries);
+const ordered = orderedDocs(entries);
+const currentIndex = ordered.findIndex((candidate) => candidate.id === entry.id);
+const previous = currentIndex > 0 ? ordered[currentIndex - 1] : undefined;
+const next = currentIndex < ordered.length - 1 ? ordered[currentIndex + 1] : undefined;
+const section = docSection(entry);
+const sourcePath = entry.id === "README" ? "docs/README.md" : `docs/${entry.id}.md`;
+const sectionLabels: Record<string, string> = {
+  overview: "Overview",
+  usage: "Usage",
+  development: "Development",
+  reference: "Reference",
+  releases: "Release notes",
+  marks: "Marks",
+  licenses: "Licence material"
+};
+const tocHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+---
+
+<BaseLayout
+  title={`${title} — azdocs`}
+  description={`Official azdocs documentation: ${title}. Imported from the main azdocs repository at build time.`}
+  className="docs-page"
+>
+  <div class="docs-shell">
+    <aside class="docs-sidebar" aria-label="Documentation navigation">
+      <div class="docs-search">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" /><path d="m12.5 12.5 4 4" /></svg>
+        <input type="search" placeholder="Filter documentation" aria-label="Filter documentation" data-docs-filter />
+      </div>
+      <nav data-docs-navigation>
+        {Array.from(groups).map(([groupName, groupEntries]) => (
+          <div class="docs-group" data-docs-group>
+            <h2>{sectionLabels[groupName] ?? groupName}</h2>
+            {groupEntries.map((candidate) => (
+              <a
+                href={docHref(candidate)}
+                class:list={{ "is-active": candidate.id === entry.id }}
+                aria-current={candidate.id === entry.id ? "page" : undefined}
+                data-docs-link
+              >
+                {docTitle(candidate)}
+              </a>
+            ))}
+          </div>
+        ))}
+        <p class="docs-sidebar-empty" data-docs-empty>No matching pages.</p>
+      </nav>
+    </aside>
+
+    <div class="docs-content">
+      <details class="docs-mobile-nav">
+        <summary>{sectionLabels[section] ?? "Documentation"} · {title}</summary>
+        <div class="mobile-doc-links">
+          {Array.from(groups).map(([groupName, groupEntries]) => (
+            <div class="docs-group">
+              <h2>{sectionLabels[groupName] ?? groupName}</h2>
+              {groupEntries.map((candidate) => (
+                <a href={docHref(candidate)} class:list={{ "is-active": candidate.id === entry.id }}>
+                  {docTitle(candidate)}
+                </a>
+              ))}
+            </div>
+          ))}
+        </div>
+      </details>
+
+      <nav class="docs-breadcrumbs" aria-label="Breadcrumb">
+        <a href="/docs/">Docs</a>
+        {section !== "overview" && (
+          <>
+            <svg viewBox="0 0 12 12" aria-hidden="true"><path d="m4.5 2.5 3.5 3.5-3.5 3.5" /></svg>
+            <a href={`/docs/${section}/`}>{sectionLabels[section] ?? section}</a>
+          </>
+        )}
+        {!entry.id.endsWith("README") && entry.id !== "README" && (
+          <>
+            <svg viewBox="0 0 12 12" aria-hidden="true"><path d="m4.5 2.5 3.5 3.5-3.5 3.5" /></svg>
+            <span>{title}</span>
+          </>
+        )}
+      </nav>
+
+      <article class="markdown-body">
+        <slot />
+      </article>
+
+      <div class="docs-source-note">
+        <span>Imported from the azdocs repository during this build.</span>
+        <a href={`https://github.com/russmckendrick/azdocs/blob/main/${sourcePath}`} target="_blank" rel="noreferrer">View source on GitHub</a>
+      </div>
+
+      <nav class="docs-pagination" aria-label="Previous and next documentation pages">
+        {previous ? (
+          <a href={docHref(previous)}>
+            <small>Previous</small>
+            <b>{docTitle(previous)}</b>
+          </a>
+        ) : <span />}
+        {next && (
+          <a class="next-doc" href={docHref(next)}>
+            <small>Next</small>
+            <b>{docTitle(next)}</b>
+          </a>
+        )}
+      </nav>
+    </div>
+
+    {tocHeadings.length > 0 && (
+      <aside class="docs-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        {tocHeadings.map((heading) => (
+          <a class={`depth-${heading.depth}`} href={`#${heading.slug}`}>{heading.text}</a>
+        ))}
+      </aside>
+    )}
+  </div>
+
+  <script>
+    const filter = document.querySelector<HTMLInputElement>("[data-docs-filter]");
+    const links = [...document.querySelectorAll<HTMLAnchorElement>("[data-docs-link]")];
+    const groups = [...document.querySelectorAll<HTMLElement>("[data-docs-group]")];
+    const empty = document.querySelector<HTMLElement>("[data-docs-empty]");
+
+    filter?.addEventListener("input", () => {
+      const query = filter.value.trim().toLocaleLowerCase();
+      let visibleCount = 0;
+      for (const link of links) {
+        const visible = link.textContent?.toLocaleLowerCase().includes(query) ?? false;
+        link.hidden = !visible;
+        if (visible) visibleCount += 1;
+      }
+      for (const group of groups) {
+        group.hidden = !group.querySelector("a:not([hidden])");
+      }
+      if (empty) empty.style.display = visibleCount === 0 ? "block" : "none";
+    });
+
+    const diagrams = document.querySelectorAll(".mermaid");
+    if (diagrams.length > 0) {
+      for (const diagram of diagrams) {
+        diagram.setAttribute("tabindex", "0");
+        diagram.setAttribute("aria-label", "Diagram. Scroll horizontally to view on smaller screens.");
+      }
+
+      const { default: mermaid } = await import("mermaid");
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: "strict",
+        theme: "dark",
+        fontFamily: "Plex, Segoe UI, sans-serif",
+        themeVariables: {
+          background: "#091725",
+          primaryColor: "#10263a",
+          primaryTextColor: "#eaf3fa",
+          primaryBorderColor: "#3d6d90",
+          lineColor: "#49b6ff",
+          secondaryColor: "#0d2132",
+          tertiaryColor: "#091725"
+        }
+      });
+      await mermaid.run({ querySelector: ".mermaid" });
+    }
+  </script>
+</BaseLayout>

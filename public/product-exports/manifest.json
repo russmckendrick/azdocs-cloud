@@ -1,0 +1,14 @@
+{
+  "sourceRepository": "russmckendrick/azdocs",
+  "sourceRevision": "953118e087c5cc972c8e889cc81ed19e4c5c57a0",
+  "sourceSha256": "6f383d6507ad3500ecc1c26ad84c52752d9b0272dc80ea9e27074755c0499d95",
+  "generatedAt": "2026-09-15T17:34:05.753Z",
+  "fixture": "tests/common/mod.rs::seed_estate",
+  "runner": "tests/report_preview.rs::writes_every_theme_in_every_format",
+  "renderer": "src/report/html.rs",
+  "theme": "field-report",
+  "output": "azure-estate-report.html",
+  "outputSha256": "35df1d5b6e4525a73e042689bcb0526f4f77e286f9a329bbd7193ab719358dca",
+  "pdfOutput": "azure-estate-report.pdf",
+  "pdfOutputSha256": "a39df96f985acd197d8a98d356442c33ed0af1e75e33d5554cef9da1f9e785f1"
+}

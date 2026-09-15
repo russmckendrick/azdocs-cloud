@@ -1,0 +1,55 @@
+---
+import demoManifest from "../../public/demo/manifest.json";
+
+const demoUrl = `/demo/index.html?v=${demoManifest.outputSha256.slice(0, 12)}`;
+const sourceRevision = demoManifest.sourceRevision.slice(0, 12);
+---
+
+<section class="az-story" id="product" data-product-story data-scene="overview">
+  <div class="az-story-sticky">
+    <div class="az-story-intro" data-story-intro>
+      <p class="az-story-kicker">Azure estate explorer</p>
+      <h1>Your Azure estate,<br /><span>documented.</span></h1>
+      <p>Collect once. Explore the saved evidence. Export it when you need it.</p>
+      <div class="az-story-actions">
+        <a class="button button-primary" href="/docs/usage/installation/">Install azdocs</a>
+        <a class="button button-secondary" href="/docs/">Read the documentation</a>
+      </div>
+    </div>
+
+    <div class="az-theatre" data-story-theatre>
+      <div class="az-stage-copy" aria-live="polite">
+        <div data-copy-scene="overview"><span>01 · Overview</span><h2>Start with the estate.</h2><p>The latest stored snapshot, rendered by the current desktop app.</p></div>
+        <div data-copy-scene="map"><span>02 · Map</span><h2>Then follow the connections.</h2><p>Real Azure resources resolve into their saved relationships.</p></div>
+        <div data-copy-scene="findings"><span>03 · Findings</span><h2>Keep every finding tied to evidence.</h2><p>Severity, affected resources, and collected detail stay together.</p></div>
+        <div data-copy-scene="inventory"><span>04 · Inventory</span><h2>Move from shape to detail.</h2><p>Search and inspect the same snapshot without recollecting it.</p></div>
+      </div>
+
+      <div class="az-explosion" aria-hidden="true">
+        <i></i><i></i><i></i><i></i>
+      </div>
+
+      <div class="az-app-window" data-app-window>
+        <div class="az-demo-browser-bar" aria-hidden="true">
+          <span class="az-demo-dots"><i></i><i></i><i></i></span>
+          <span class="az-demo-address">azdocs · dark desktop preview</span>
+          <span class="az-demo-live"><i></i> current build</span>
+        </div>
+        <iframe
+          src={demoUrl}
+          title="Current azdocs desktop application in dark mode with sample Azure data"
+          loading="eager"
+          data-demo-frame
+        ></iframe>
+      </div>
+
+      <div class="az-demo-provenance">
+        <span>azdocs <code>{sourceRevision}</code>{demoManifest.sourceDirty ? " + local changes" : ""}</span>
+        <a href={demoUrl} target="_blank" rel="noopener">Explore the live preview ↗</a>
+      </div>
+      <div class="az-scroll-cue" aria-hidden="true"><span></span><b>Scroll to explore</b></div>
+    </div>
+  </div>
+</section>
+
+<script src="../scripts/product-story.ts"></script>

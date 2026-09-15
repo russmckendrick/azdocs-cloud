@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Azure Estate Report — fixture-tenant</title>
+<style>
+/* Every colour and face below comes from the resolved theme
+   (src/report/theme.rs), so the HTML matches the PDF and DOCX. */
+:root { --bg:#faf8f4; --fg:#1c2430;
+        --muted:#5a6470; --border:#d8d2c6;
+        --primary:#1c2430; --accent:#0078d4;
+        --accent-dark:#14181d;
+        --tint:#f3efe7; --zebra:#f3efe7;
+        --on-accent:#faf8f4;
+        --high:#a83a22; --high-fill:#f5e4df;
+        --medium:#8a6d00; --medium-fill:#f3edd1;
+        --low:#5a6470; --low-fill:#f3efe7;
+        --info:#0078d4; --info-fill:#e6f2fb;
+        --radius:3.0px; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#14181d; --fg:#e9e4da; --muted:#9a958a; --border:#3a4048; --zebra:#10141a;
+          --tint:#10141a; --accent:#4da3e8; }
+}
+/* The vendored PDF face first; an uninstalled IBM Plex falls through to the
+   platform stack rather than forcing a web-font download. */
+body { font: 15px/1.45 "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+       background: var(--bg); color: var(--fg); max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+h1,h2,h3 { font-family: "IBM Plex Serif", Georgia, serif; line-height: 1.2; }
+h2 { border-bottom: 1px solid var(--border); padding-bottom: .3rem; margin-top: 2.5rem; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 14px; }
+th, td { text-align: left; padding: .35rem .6rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { position: sticky; top: 0;
+     background: transparent;
+     color: var(--fg); }
+code { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+       background: var(--tint); padding: .1em .3em; border-radius: 3px; font-size: 90%; word-break: break-all; }
+.badge { display: inline-block; padding: .05em .55em; border-radius: 999px; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+.badge.high { background: var(--high-fill); color: var(--high); }
+.badge.medium { background: var(--medium-fill); color: var(--medium); }
+.badge.low { background: var(--low-fill); color: var(--low); }
+.badge.info { background: var(--info-fill); color: var(--info); }
+.stats { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; }
+.stat {
+        border-radius: var(--radius); padding: .8rem 1.2rem; min-width: 8rem; }
+.stat b { display: block; font-family: "IBM Plex Serif", Georgia, serif;
+          font-size: 1.6rem; color: var(--accent-dark); }
+.stat span { color: var(--muted); font-size: 13px; }
+.meta { color: var(--muted); font-size: 13px; }
+input.filter { width: 100%; max-width: 24rem; padding: .4rem .6rem; margin: .3rem 0;
+       border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--fg); }
+details { margin: 1rem 0; } summary { cursor: pointer; font-weight: 600; }
+</style>
+</head>
+<body>
+<h1>Azure Estate Report</h1>
+<p class="meta">Quarterly estate review · Contoso Ltd</p>
+<p class="meta">Snapshot <code>dced93ea-6655-418a-ac15-a87608cee6ab</code> · collected 2026-09-15T17:34:04.175996+00:00 · tenant <code>fixture-tenant</code> · status complete · golden fixture</p>
+
+<div class="stats">
+  <div class="stat"><b>2</b><span>subscriptions</span></div>
+  <div class="stat"><b>3</b><span>resource groups</span></div>
+  <div class="stat"><b>18</b><span>resources</span></div>
+  <div class="stat"><b>13</b><span>findings</span></div>
+  <div class="stat"><b>50%</b><span>tag coverage</span></div>
+</div>
+
+
+<h2>Operational and compliance evidence</h2>
+<p>Microsoft service evidence recorded during collection. Results cover only the accessible scope; an empty dataset is not proof of zero cost, compliance, protection or service enablement. Detailed records remain in the snapshot database and data exports.</p>
+
+<h3>Azure Advisor cost opportunities</h3>
+<p>Collection: Recorded evidence</p><p>Estimates from Azure Advisor, grouped by currency and reported period. Annual estimates are separate. Missing amounts or periods remain unknown. Recommendations can overlap; totals are not guaranteed savings or billed costs.</p>
+<table><thead><tr><th>Currency</th><th>Period</th><th>Items</th><th>Savings</th><th>Annual savings</th></tr></thead>
+<tbody><tr><td>GBP</td><td>Month</td><td>1</td><td>125.50</td><td>Unknown</td></tr></tbody></table>
+
+<h3>Azure Policy evaluation states</h3>
+<p>Collection: Recorded evidence</p><p>Counts are policy evaluations, not distinct resources. Recorded states stay separate; missing evaluations never imply compliance. Full assignment and initiative IDs identify each group. A missing initiative may indicate a standalone policy or missing evidence.</p>
+<table><thead><tr><th>Sub. ID</th><th>Assignment</th><th>Initiative ID</th><th>State</th><th>Results</th></tr></thead>
+<tbody><tr><td>sub-prod</td><td>&#x2f;subscriptions&#x2f;sub-prod&#x2f;providers&#x2f;microsoft.authorization&#x2f;policyassignments&#x2f;baseline</td><td>&#x2f;providers&#x2f;microsoft.authorization&#x2f;policysetdefinitions&#x2f;security-baseline</td><td>Exempt</td><td>1</td></tr></tbody></table>
+
+<h3>Azure Policy exemptions</h3>
+<p>Collection: Recorded evidence</p><p>Expiry is assessed at collection time. Review expired exemptions and those due within 90 days with their owners. No expiry specified does not mean permanent approval; assignment scope and justification remain in the stored evidence.</p>
+<table><thead><tr><th>Category</th><th>Expiry at collection</th><th>Exemptions</th></tr></thead>
+<tbody><tr><td>Waiver</td><td>Due after 90 days</td><td>1</td></tr></tbody></table>
+
+<h3>Defender regulatory standards</h3>
+<p>Collection: Recorded evidence</p><p>Standard states across accessible subscriptions. Detailed control counts remain in the stored evidence. Missing or unsupported coverage does not establish compliance or certification.</p>
+<table><thead><tr><th>Standard</th><th>State</th><th>Standard records</th></tr></thead>
+<tbody><tr><td>Azure-Security-Benchmark</td><td>Failed</td><td>1</td></tr></tbody></table>
+
+<h3>Defender regulatory controls</h3>
+<p>Collection: Recorded evidence</p><p>Control states across accessible subscriptions, grouped by standard. Skipped, unsupported and unknown states remain distinct from passes. Full control IDs remain in the stored evidence.</p>
+<table><thead><tr><th>Standard</th><th>State</th><th>Control records</th></tr></thead>
+<tbody><tr><td>Azure-Security-Benchmark</td><td>Unsupported</td><td>1</td></tr></tbody></table>
+
+<h3>Defender regulatory assessments</h3>
+<p>Collection: Recorded evidence</p><p>Passed, failed and skipped counts are resource occurrences across assessments; resources can be counted more than once. Missing counts remain unknown. These assessments do not establish certification or compliance of unassessed resources.</p>
+<table><thead><tr><th>Standard</th><th>State</th><th>Checks</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
+<tbody><tr><td>Azure-Security-Benchmark</td><td>Failed</td><td>1</td><td>12</td><td>2</td><td>Unknown</td></tr></tbody></table>
+
+<h3>Policy assignment inventory</h3>
+<p>Collection: Recorded evidence</p><p>Assignment inventory includes the requested inherited scope. Enforcement mode and excluded scopes affect interpretation; an assignment does not establish a passing evaluation.</p>
+<table><thead><tr><th>Enforcement</th><th>Assignments</th></tr></thead>
+<tbody><tr><td>Default</td><td>1</td></tr><tr><td>DoNotEnforce</td><td>1</td></tr></tbody></table>
+
+<h3>Patch assessments</h3>
+<p>Collection: Recorded evidence</p><p>Counts describe pending updates at the recorded assessment time and may overlap across classifications. Missing counts remain unknown. ARG assessment history is limited to seven days.</p>
+<table><thead><tr><th>OS</th><th>State</th><th>Checks</th><th>Security updates</th><th>Critical updates</th></tr></thead>
+<tbody><tr><td>Linux</td><td>Succeeded</td><td>1</td><td>2</td><td>Unknown</td></tr></tbody></table>
+
+<h3>Backup and restore outcomes</h3>
+<p>Collection: Recorded evidence</p><p>Backup and restore jobs retain the provider status, including warnings. ARG exposes up to 14 days of jobs; an empty result does not prove successful backups.</p>
+<table><thead><tr><th>Operation</th><th>State</th><th>Jobs</th></tr></thead>
+<tbody><tr><td>Backup</td><td>CompletedWithWarnings</td><td>1</td></tr><tr><td>Restore</td><td>Failed</td><td>1</td></tr></tbody></table>
+
+<h3>Recent ARM changes</h3>
+<p>Collection: Recorded evidence</p><p>Recorded ARM changes can include actor, client and changed properties. ARG retains 14 days; this is not a complete activity or data-plane audit log.</p>
+<table><thead><tr><th>Type</th><th>Actor type</th><th>Events</th></tr></thead>
+<tbody><tr><td>Update</td><td>Application</td><td>1</td></tr></tbody></table>
+
+<h3>Policy evaluation coverage</h3>
+<p>Collection: Recorded evidence</p><p>Assignments are matched to stored policy states using full normalised ARM IDs. No observed evaluation is kept separate from compliance and from unavailable state collection.</p>
+<table><thead><tr><th>Assignment</th><th>Name</th><th>State</th><th>Results</th></tr></thead>
+<tbody><tr><td>&#x2f;subscriptions&#x2f;sub-prod&#x2f;providers&#x2f;microsoft.authorization&#x2f;policyassignments&#x2f;baseline</td><td>Production baseline</td><td>Evaluation observed</td><td>1</td></tr><tr><td>&#x2f;subscriptions&#x2f;sub-prod&#x2f;providers&#x2f;microsoft.authorization&#x2f;policyassignments&#x2f;not-evaluated</td><td>Pending initiative</td><td>No evaluation observed</td><td>0</td></tr></tbody></table>
+
+<h3>Machine assessment coverage</h3>
+<p>Collection: Recorded evidence</p><p>Counts use the collected VM and Arc inventory, deduplicated by full ARM ID. No observed assessment may indicate missing service configuration, access or expired evidence; it is not a passed patch check.</p>
+<table><thead><tr><th>Type</th><th>State</th><th>Resources</th></tr></thead>
+<tbody><tr><td>microsoft.compute&#x2f;virtualmachines</td><td>Evaluation observed</td><td>1</td></tr></tbody></table>
+
+<h3>Evidence age at collection</h3>
+<p>Collection: Recorded evidence</p><p>Ages are evaluated at the snapshot timestamp using the threshold recorded with each query. Future, invalid and missing dates stay separate. Review thresholds are configurable and are not Microsoft retention guarantees.</p>
+<table><thead><tr><th>Query</th><th>Review age (hours)</th><th>State</th><th>Items</th></tr></thead>
+<tbody><tr><td>patch_assessments</td><td>72</td><td>Missing or invalid timestamp</td><td>1</td></tr></tbody></table>
+
+
+<h2>Findings</h2>
+<p>
+<span class="badge high">2 high</span>
+<span class="badge medium">1 medium</span>
+<span class="badge low">9 low</span>
+<span class="badge info">1 info</span>
+</p>
+
+<input class="filter" type="search" placeholder="Filter findings..." oninput="filterTable(this, 'findings-table')">
+<table id="findings-table">
+<thead><tr><th>Severity</th><th>Title</th><th>Category</th><th>Check</th><th>Resource</th></tr></thead>
+<tbody>
+<tr><td><span class="badge high">high</span></td>
+<td>nsg-app: rule allow-ssh allows Internet -> port 22</td><td>security</td><td><code>nsg_open_to_internet</code></td>
+<td><code>/subscriptions/sub-prod/resourcegroups/rg-network/providers/microsoft.network/networksecuritygroups/nsg-app</code></td></tr>
+<tr><td><span class="badge high">high</span></td>
+<td>stprodapp01 allows public blob access</td><td>security</td><td><code>storage_public_blob_access</code></td>
+<td><code>/subscriptions/sub-prod/resourcegroups/rg-app/providers/microsoft.storage/storageaccounts/stprodapp01</code></td></tr>
+<tr><td><span class="badge medium">medium</span></td>
+<td>web-dev does not enforce HTTPS-only traffic</td><td>security</td><td><code>web_app_https_only_disabled</code></td>
+<td><code>/subscriptions/sub-dev/resourcegroups/rg-dev/providers/microsoft.web/sites/web-dev</code></td></tr>
+<tr><td><span class="badge low">low</span></td>
+<td>asp-dev is missing tags: env</td><td>governance</td><td><code>missing_required_tags</code></td>
+<td><code>/subscriptions/sub-dev/resourcegroups/rg-dev/providers/microsoft.web/serverfarms/asp-dev</code></td></tr>
+<tr><td><span class="badge low">low</span></td>
+<td>id-web-dev is missing tags: env</td><td>governance</td><td><code>missing_required_tags</code></td>
+<td><code>/subscriptions/sub-dev/resourcegroups/rg-dev/providers/microsoft.managedidentity/userassignedidentities/id-web-dev</code></td></tr>
+<tr><td><span class="badge low">low</span></td>
+<td>pe-sql is missing tags: env</td><td>governance</td><td><code>missing_required_tags</code></td>
+<td><code>/subscriptions/sub-prod/resourcegroups/rg-app/providers/microsoft.network/privateendpoints/pe-sql</code></td></tr>
+<tr><td><span class="badge low">low</span></td>
+<td>pe-sql.nic.4f2a is missing tags: env</td><td>governance</td><td><code>missing_required_tags</code></td>
+<td><code>/subscriptions/sub-prod/resourcegroups/rg-app/providers/microsoft.network/networkinterfaces/pe-sql.nic.4f2a</code></td></tr>
+<tr><td><span class="badge low">low</span></td>
+<td>stprodapp01 is missing tags: env</td><td>governance</td><td><code>missing_required_tags</code></td>
+<td><code>/subscriptions/sub-prod/resourcegroups/rg-app/providers/microsoft.storage/storageaccounts/stprodapp01</code></td></tr>
+<tr><td><span class="badge low">low</span></td>
+<td>vm-app-01-nic is missing tags: env</td><td>governance</td><td><code>missing_required_tags</code></td>
+<td><code>/subscriptions/sub-prod/resourcegroups/rg-app/providers/microsoft.network/networkinterfaces/vm-app-01-nic</code></td></tr>
+<tr><td><span class="badge low">low</span></td>
+<td>vm-app-01-os is missing tags: env</td><td>governance</td><td><code>missing_required_tags</code></td>
+<td><code>/subscriptions/sub-prod/resourcegroups/rg-app/providers/microsoft.compute/disks/vm-app-01-os</code></td></tr>
+<tr><td><span class="badge low">low</span></td>
+<td>vm-app-01-pip is missing tags: env</td><td>governance</td><td><code>missing_required_tags</code></td>
+<td><code>/subscriptions/sub-prod/resourcegroups/rg-app/providers/microsoft.network/publicipaddresses/vm-app-01-pip</code></td></tr>
+<tr><td><span class="badge low">low</span></td>
+<td>web-dev is missing tags: env</td><td>governance</td><td><code>missing_required_tags</code></td>
+<td><code>/subscriptions/sub-dev/resourcegroups/rg-dev/providers/microsoft.web/sites/web-dev</code></td></tr>
+<tr><td><span class="badge info">info</span></td>
+<td>nsg-unused is not associated with any subnet or NIC</td><td>security</td><td><code>unassociated_nsgs</code></td>
+<td><code>/subscriptions/sub-prod/resourcegroups/rg-network/providers/microsoft.network/networksecuritygroups/nsg-unused</code></td></tr>
+</tbody>
+</table>
+
+
+<h2>Governance</h2>
+<div class="stats">
+  <div class="stat"><b>50%</b><span>tag coverage</span></div>
+  <div class="stat"><b>1</b><span>distinct keys</span></div>
+  <div class="stat"><b>9</b><span>non-compliant</span></div>
+</div>
+
+<table>
+<thead><tr><th>Tag key</th><th>Resources</th><th>Share of 9 tagged</th></tr></thead>
+<tbody>
+<tr><td><code>env</code></td><td>9</td><td>100%</td></tr>
+</tbody>
+</table>
+
+<table>
+<thead><tr><th>Subscription</th><th>Tag coverage</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Development</td><td>0%</td>
+<td><span class="badge medium">below threshold</span></td></tr>
+<tr><td>Production</td><td>60%</td>
+<td><span class="badge info">healthy</span></td></tr>
+</tbody>
+</table>
+
+<p>9 resources are missing at least one required tag, recorded by the <code>missing_required_tags</code> audit.</p>
+<table>
+<thead><tr><th>Resource group</th><th>Subscription</th><th>Resources</th><th>Non-compliant</th><th>Missed tags</th></tr></thead>
+<tbody>
+<tr><td>rg-app</td><td>Production</td><td>12</td>
+<td>6</td>
+<td><code>env</code></td></tr>
+<tr><td>rg-dev</td><td>Development</td><td>3</td>
+<td><span class="badge high">3</span></td>
+<td><code>env</code></td></tr>
+</tbody>
+</table>
+
+<h2>Resources by type</h2>
+<table>
+<thead><tr><th>Type</th><th>Azure type</th><th>Count</th></tr></thead>
+<tbody>
+<tr><td>Network Interface</td><td><code>microsoft.network/networkinterfaces</code></td><td>2</td></tr>
+<tr><td>Network Security Group</td><td><code>microsoft.network/networksecuritygroups</code></td><td>2</td></tr>
+<tr><td>Virtual Network</td><td><code>microsoft.network/virtualnetworks</code></td><td>2</td></tr>
+<tr><td>Managed Disk</td><td><code>microsoft.compute/disks</code></td><td>1</td></tr>
+<tr><td>Virtual Machine</td><td><code>microsoft.compute/virtualmachines</code></td><td>1</td></tr>
+<tr><td>AVD Host Pool</td><td><code>microsoft.desktopvirtualization/hostpools</code></td><td>1</td></tr>
+<tr><td>Managed Identity</td><td><code>microsoft.managedidentity/userassignedidentities</code></td><td>1</td></tr>
+<tr><td>Private Endpoint</td><td><code>microsoft.network/privateendpoints</code></td><td>1</td></tr>
+<tr><td>Public IP Address</td><td><code>microsoft.network/publicipaddresses</code></td><td>1</td></tr>
+<tr><td>Log Analytics Workspace</td><td><code>microsoft.operationalinsights/workspaces</code></td><td>1</td></tr>
+<tr><td>SQL Server</td><td><code>microsoft.sql/servers</code></td><td>1</td></tr>
+<tr><td>SQL Database</td><td><code>microsoft.sql/servers/databases</code></td><td>1</td></tr>
+<tr><td>Storage Account</td><td><code>microsoft.storage/storageaccounts</code></td><td>1</td></tr>
+<tr><td>App Service Plan</td><td><code>microsoft.web/serverfarms</code></td><td>1</td></tr>
+<tr><td>App Service / Function App</td><td><code>microsoft.web/sites</code></td><td>1</td></tr>
+</tbody>
+</table>
+
+
+<section>
+<h2>Query provenance</h2>
+<p class="meta">The executed query and request scope are preserved with this snapshot. Source review dates are not upstream release dates.</p>
+
+<details><summary>backup_jobs</summary>
+<table><tr><th>KQL SHA-256</th><td>cb61f0676de911c80ba3e531f5ec6f6ef259cf75db1161ecaec5c106b88ee742</td></tr><tr><th>Authorization scope</th><td>AtScopeAndBelow</td></tr><tr><th>Requested subscriptions</th><td>sub-prod</td></tr><tr><th>Sources</th><td>https:&#x2f;&#x2f;learn.microsoft.com&#x2f;en-us&#x2f;azure&#x2f;backup&#x2f;query-backups-using-azure-resource-graph</td></tr><tr><th>Source reviewed</th><td>2026-09-13</td></tr></table>
+<pre><code>&#x2f;&#x2f; ARG retains up to 14 days of jobs. No jobs is not evidence of successful backups; target IDs may be unavailable on some job types.
+recoveryservicesresources
+| where type in~ (&#x27;microsoft.recoveryservices&#x2f;vaults&#x2f;backupjobs&#x27;, &#x27;microsoft.dataprotection&#x2f;backupvaults&#x2f;backupjobs&#x27;)
+| project id, name, type, subscriptionId, resourceGroup,
+          resourceId = coalesce(tostring(properties.dataSourceId), tostring(properties.sourceResourceId)),
+          friendlyName = coalesce(tostring(properties.entityFriendlyName), tostring(properties.dataSourceName)),
+          operation = coalesce(tostring(properties.operation), tostring(properties.operationCategory)),
+          status = tostring(properties.status), startedAt = properties.startTime, endedAt = properties.endTime,
+          duration = properties.duration, backupInstanceId = tostring(properties.backupInstanceId), properties
+| order by id asc
+</code></pre>
+</details>
+
+<details><summary>patch_assessments</summary>
+<table><tr><th>KQL SHA-256</th><td>8ef4dc6295f4389a1836e534969793c389f3cf6a721839b1dc4f8c1185716b37</td></tr><tr><th>Authorization scope</th><td>AtScopeAndBelow</td></tr><tr><th>Requested subscriptions</th><td>sub-prod</td></tr><tr><th>Sources</th><td>https:&#x2f;&#x2f;learn.microsoft.com&#x2f;en-us&#x2f;azure&#x2f;update-manager&#x2f;query-logs</td></tr><tr><th>Source reviewed</th><td>2026-09-13</td></tr></table>
+<pre><code>&#x2f;&#x2f; Only summary records: per-patch rows would duplicate the machine totals. ARG assessment history is limited to seven days.
+patchassessmentresources
+| where type in~ (&#x27;microsoft.compute&#x2f;virtualmachines&#x2f;patchassessmentresults&#x27;, &#x27;microsoft.hybridcompute&#x2f;machines&#x2f;patchassessmentresults&#x27;)
+| project id, name, subscriptionId, resourceGroup,
+          resourceId = tostring(split(tolower(id), &#x27;&#x2f;patchassessmentresults&#x2f;&#x27;)[0]),
+          assessedAt = properties.lastModifiedDateTime, osType = tostring(properties.osType),
+          status = tostring(properties.status), rebootPending = tobool(properties.rebootPending),
+          securityUpdates = toint(properties.availablePatchCountByClassification.security),
+          criticalUpdates = toint(properties.availablePatchCountByClassification.critical),
+          classifications = properties.availablePatchCountByClassification, errorDetails = properties.errorDetails
+| order by id asc
+</code></pre>
+</details>
+
+<details><summary>policy_assignments</summary>
+<table><tr><th>KQL SHA-256</th><td>b0d05b23d5aa6b47f7dfdd8fff0de86a88a02f0f4252a0c7f0d288a4f5b0dabd</td></tr><tr><th>Authorization scope</th><td>AtScopeAboveAndBelow</td></tr><tr><th>Requested subscriptions</th><td>sub-prod</td></tr><tr><th>Sources</th><td>https:&#x2f;&#x2f;learn.microsoft.com&#x2f;en-us&#x2f;azure&#x2f;governance&#x2f;policy&#x2f;samples&#x2f;resource-graph-samples</td></tr><tr><th>Source reviewed</th><td>2026-09-13</td></tr></table>
+<pre><code>&#x2f;&#x2f; Assignments without state rows are still evidence. Do not infer a passed evaluation from this inventory.
+policyresources
+| where type =~ &#x27;microsoft.authorization&#x2f;policyassignments&#x27;
+| project id, name, subscriptionId, scope = tostring(properties.scope), policyDefinitionId = tostring(properties.policyDefinitionId),
+          displayName = tostring(properties.displayName), enforcementMode = tostring(properties.enforcementMode),
+          notScopes = properties.notScopes, parameters = properties.parameters, metadata = properties.metadata
+| order by id asc
+</code></pre>
+</details>
+
+<details><summary>resource_changes</summary>
+<table><tr><th>KQL SHA-256</th><td>53f687e9350c4e3bb469c14d3eb0439573fcda49215f91481d4c8d3369fabfaa</td></tr><tr><th>Authorization scope</th><td>AtScopeAndBelow</td></tr><tr><th>Requested subscriptions</th><td>sub-prod</td></tr><tr><th>Sources</th><td>https:&#x2f;&#x2f;learn.microsoft.com&#x2f;en-us&#x2f;azure&#x2f;governance&#x2f;resource-graph&#x2f;changes&#x2f;get-resource-changes</td></tr><tr><th>Source reviewed</th><td>2026-09-13</td></tr></table>
+<pre><code>&#x2f;&#x2f; ARG change history lasts 14 days and does not represent a complete activity&#x2f;data-plane log. Missing actor information stays unknown.
+resourcechanges
+| project id, name, subscriptionId, resourceGroup, resourceId = tostring(properties.targetResourceId),
+          changeType = tostring(properties.changeType), changedAt = properties.changeAttributes.timestamp,
+          changedBy = tostring(properties.changeAttributes.changedBy), changedByType = tostring(properties.changeAttributes.changedByType),
+          clientType = tostring(properties.changeAttributes.clientType), correlationId = tostring(properties.changeAttributes.correlationId),
+          changes = properties.changes
+| order by id asc
+</code></pre>
+</details>
+
+</section>
+
+
+<h2>Avd</h2>
+
+<details open>
+<summary>avd_host_pools (1)</summary>
+<p class="meta">Azure Virtual Desktop host pools with type, load balancing, and session limits</p>
+<table>
+<thead><tr><th>id</th><th>name</th><th>location</th><th>resourceGroup</th><th>subscriptionId</th><th>hostPoolType</th><th>loadBalancerType</th><th>maxSessionLimit</th><th>preferredAppGroupType</th></tr></thead>
+<tbody>
+<tr><td>/subscriptions/sub-prod/resourcegroups/rg-app/providers/microsoft.desktopvirtualization/hostpools/hp-prod</td><td>hp-prod</td><td>uksouth</td><td>rg-app</td><td>sub-prod</td><td>Pooled</td><td>BreadthFirst</td><td>10</td><td>Desktop</td></tr>
+</tbody>
+</table>
+</details>
+
+
+<h2>Compliance</h2>
+
+<details open>
+<summary>defender_compliance_assessments (1)</summary>
+<p class="meta">Defender regulatory assessments with passed, failed, and skipped resource counts</p>
+<table>
+<thead><tr><th>id</th><th>subscriptionId</th><th>complianceStandard</th><th>complianceControl</th><th>state</th><th>passedResources</th><th>failedResources</th><th>skippedResources</th></tr></thead>
+<tbody>
+<tr><td>/defender/assessment-1</td><td>sub-prod</td><td>Azure-Security-Benchmark</td><td>NS-1</td><td>Failed</td><td>12</td><td>2</td><td></td></tr>
+</tbody>
+</table>
+</details>
+
+<details >
+<summary>defender_compliance_controls (1)</summary>
+<p class="meta">Defender regulatory controls with standard, state, and description</p>
+<table>
+<thead><tr><th>id</th><th>subscriptionId</th><th>complianceStandard</th><th>complianceControl</th><th>state</th></tr></thead>
+<tbody>
+<tr><td>/defender/control-1</td><td>sub-prod</td><td>Azure-Security-Benchmark</td><td>NS-1</td><td>Unsupported</td></tr>
+</tbody>
+</table>
+</details>
+
+<details >
+<summary>defender_compliance_standards (1)</summary>
+<p class="meta">Defender regulatory standards with observed state and control counts</p>
+<table>
+<thead><tr><th>id</th><th>subscriptionId</th><th>complianceStandard</th><th>state</th><th>passedControls</th><th>failedControls</th><th>skippedControls</th><th>unsupportedControls</th></tr></thead>
+<tbody>
+<tr><td>/defender/standard-1</td><td>sub-prod</td><td>Azure-Security-Benchmark</td><td>Failed</td><td>12</td><td>2</td><td>1</td><td>3</td></tr>
+</tbody>
+</table>
+</details>
+
+
+<h2>Cost</h2>
+
+<details open>
+<summary>advisor_cost_recommendations (1)</summary>
+<p class="meta">Azure Advisor cost recommendations with reported savings, currency, period, and affected resource</p>
+<table>
+<thead><tr><th>id</th><th>subscriptionId</th><th>resourceId</th><th>solution</th><th>currency</th><th>savingsPeriod</th><th>savingsAmount</th><th>annualSavingsAmount</th></tr></thead>
+<tbody>
+<tr><td>/advisor/cost-1</td><td>sub-prod</td><td>/subscriptions/sub-prod/resourcegroups/rg-app/providers/microsoft.compute/virtualmachines/vm-web</td><td>Review VM sizing</td><td>GBP</td><td>Month</td><td>125.5</td><td></td></tr>
+</tbody>
+</table>
+</details>
+
+
+<h2>Governance</h2>
+
+<details open>
+<summary>policy_assignments (2)</summary>
+<p class="meta">Policy assignments, including inherited scope and enforcement settings</p>
+<table>
+<thead><tr><th>id</th><th>displayName</th><th>enforcementMode</th></tr></thead>
+<tbody>
+<tr><td>/subscriptions/sub-prod/providers/microsoft.authorization/policyassignments/baseline</td><td>Production baseline</td><td>Default</td></tr>
+<tr><td>/subscriptions/sub-prod/providers/microsoft.authorization/policyassignments/not-evaluated</td><td>Pending initiative</td><td>DoNotEnforce</td></tr>
+</tbody>
+</table>
+</details>
+
+<details >
+<summary>policy_exemptions (1)</summary>
+<p class="meta">Azure Policy exemptions including category, assignment, and expiry</p>
+<table>
+<thead><tr><th>id</th><th>name</th><th>displayName</th><th>subscriptionId</th><th>exemptionCategory</th><th>expiresOn</th></tr></thead>
+<tbody>
+<tr><td>/policy/exemption-1</td><td>migration</td><td>Migration exception</td><td>sub-prod</td><td>Waiver</td><td>2099-01-01T00:00:00Z</td></tr>
+</tbody>
+</table>
+</details>
+
+<details >
+<summary>policy_states (1)</summary>
+<p class="meta">Azure Policy evaluations with assignment, initiative, resource, state, and evaluation timestamp</p>
+<table>
+<thead><tr><th>id</th><th>subscriptionId</th><th>resourceId</th><th>policyAssignmentId</th><th>policyAssignmentName</th><th>policySetDefinitionId</th><th>complianceState</th><th>evaluatedAt</th></tr></thead>
+<tbody>
+<tr><td>/policy/state-1</td><td>sub-prod</td><td>/subscriptions/sub-prod/resourcegroups/rg-app/providers/microsoft.storage/storageaccounts/stprodapp01</td><td>/subscriptions/sub-prod/providers/microsoft.authorization/policyassignments/baseline</td><td>baseline</td><td>/providers/microsoft.authorization/policysetdefinitions/security-baseline</td><td>Exempt</td><td>2026-09-01T12:00:00Z</td></tr>
+</tbody>
+</table>
+</details>
+
+
+<h2>Inventory</h2>
+
+<details open>
+<summary>resource_type_counts (2)</summary>
+<p class="meta">Resource counts by type across the estate</p>
+<table>
+<thead><tr><th>type</th><th>resourceCount</th></tr></thead>
+<tbody>
+<tr><td>microsoft.network/virtualnetworks</td><td>2</td></tr>
+<tr><td>microsoft.compute/virtualmachines</td><td>1</td></tr>
+</tbody>
+</table>
+</details>
+
+
+<h2>Monitoring</h2>
+
+<details open>
+<summary>log_analytics_workspaces (1)</summary>
+<p class="meta">Log Analytics workspaces with SKU, retention, quota, and network access</p>
+<table>
+<thead><tr><th>id</th><th>name</th><th>location</th><th>resourceGroup</th><th>subscriptionId</th><th>skuName</th><th>retentionInDays</th><th>publicNetworkAccessForIngestion</th><th>publicNetworkAccessForQuery</th></tr></thead>
+<tbody>
+<tr><td>/subscriptions/sub-prod/resourcegroups/rg-app/providers/microsoft.operationalinsights/workspaces/law-prod</td><td>law-prod</td><td>uksouth</td><td>rg-app</td><td>sub-prod</td><td>PerGB2018</td><td>30</td><td>Enabled</td><td>Enabled</td></tr>
+</tbody>
+</table>
+</details>
+
+<details >
+<summary>resource_changes (1)</summary>
+<p class="meta">Recent ARM control-plane changes with recorded actor, time and changed properties</p>
+<table>
+<thead><tr><th>id</th><th>changeType</th><th>changedByType</th><th>changedBy</th><th>clientType</th></tr></thead>
+<tbody>
+<tr><td>/changes/change-1</td><td>Update</td><td>Application</td><td>fixture-deployment</td><td>Azure Resource Manager</td></tr>
+</tbody>
+</table>
+</details>
+
+
+<h2>Networking</h2>
+
+<details open>
+<summary>virtual_networks (2)</summary>
+<p class="meta">Virtual networks with address spaces and DNS settings</p>
+<table>
+<thead><tr><th>id</th><th>name</th><th>location</th><th>resourceGroup</th><th>subscriptionId</th><th>addressPrefixes</th><th>dnsServers</th><th>subnetCount</th></tr></thead>
+<tbody>
+<tr><td>/subscriptions/sub-prod/resourcegroups/rg-network/providers/microsoft.network/virtualnetworks/vnet-hub</td><td>vnet-hub</td><td>uksouth</td><td>rg-network</td><td>sub-prod</td><td>["10.0.0.0/16"]</td><td>[]</td><td>2</td></tr>
+<tr><td>/subscriptions/sub-prod/resourcegroups/rg-app/providers/microsoft.network/virtualnetworks/vnet-app</td><td>vnet-app</td><td>uksouth</td><td>rg-app</td><td>sub-prod</td><td>["10.1.0.0/16"]</td><td>[]</td><td>1</td></tr>
+</tbody>
+</table>
+</details>
+
+
+<h2>Operations</h2>
+
+<details open>
+<summary>patch_assessments (1)</summary>
+<p class="meta">VM and Arc patch assessments with pending updates, reboot status and observation time</p>
+<table>
+<thead><tr><th>id</th><th>resourceId</th><th>assessedAt</th><th>osType</th><th>status</th><th>securityUpdates</th><th>criticalUpdates</th></tr></thead>
+<tbody>
+<tr><td>/patch/assessment-1</td><td>/subscriptions/sub-prod/resourcegroups/rg-app/providers/microsoft.compute/virtualmachines/vm-app-01</td><td></td><td>Linux</td><td>Succeeded</td><td>2</td><td></td></tr>
+</tbody>
+</table>
+</details>
+
+
+<h2>Resilience</h2>
+
+<details open>
+<summary>backup_jobs (2)</summary>
+<p class="meta">Backup and restore job history with original status and provider details</p>
+<table>
+<thead><tr><th>id</th><th>operation</th><th>status</th></tr></thead>
+<tbody>
+<tr><td>/backup/job-1</td><td>Backup</td><td>CompletedWithWarnings</td></tr>
+<tr><td>/backup/job-2</td><td>Restore</td><td>Failed</td></tr>
+</tbody>
+</table>
+</details>
+
+
+
+<h2>Subscriptions</h2>
+
+<h3>Development <span class="meta">(sub-dev · 3 resources)</span></h3>
+
+<details>
+<summary>rg-dev — UK West (3)</summary>
+<table>
+<thead><tr><th>Name</th><th>Type</th><th>Location</th><th>Tags</th></tr></thead>
+<tbody>
+<tr><td>id-web-dev</td><td>Managed Identity</td><td>UK West</td><td></td></tr>
+<tr><td>asp-dev</td><td>App Service Plan</td><td>UK West</td><td></td></tr>
+<tr><td>web-dev</td><td>App Service / Function App</td><td>UK West</td><td></td></tr>
+</tbody>
+</table>
+</details>
+
+
+<h3>Production <span class="meta">(sub-prod · 15 resources)</span></h3>
+
+<details>
+<summary>rg-app — UK South (12)</summary>
+<table>
+<thead><tr><th>Name</th><th>Type</th><th>Location</th><th>Tags</th></tr></thead>
+<tbody>
+<tr><td>vm-app-01-os</td><td>Managed Disk</td><td>UK South</td><td></td></tr>
+<tr><td>vm-app-01</td><td>Virtual Machine</td><td>UK South</td><td><code>{"env":"prod"}</code></td></tr>
+<tr><td>hp-prod</td><td>AVD Host Pool</td><td>UK South</td><td><code>{"env":"prod"}</code></td></tr>
+<tr><td>pe-sql.nic.4f2a</td><td>Network Interface</td><td>UK South</td><td></td></tr>
+<tr><td>vm-app-01-nic</td><td>Network Interface</td><td>UK South</td><td></td></tr>
+<tr><td>pe-sql</td><td>Private Endpoint</td><td>UK South</td><td></td></tr>
+<tr><td>vm-app-01-pip</td><td>Public IP Address</td><td>UK South</td><td></td></tr>
+<tr><td>vnet-app</td><td>Virtual Network</td><td>UK South</td><td><code>{"env":"prod"}</code></td></tr>
+<tr><td>law-prod</td><td>Log Analytics Workspace</td><td>UK South</td><td><code>{"env":"prod"}</code></td></tr>
+<tr><td>sql-prod</td><td>SQL Server</td><td>UK South</td><td><code>{"env":"prod"}</code></td></tr>
+<tr><td>app-db</td><td>SQL Database</td><td>UK South</td><td><code>{"env":"prod"}</code></td></tr>
+<tr><td>stprodapp01</td><td>Storage Account</td><td>UK South</td><td></td></tr>
+</tbody>
+</table>
+</details>
+
+<details>
+<summary>rg-network — UK South (3)</summary>
+<table>
+<thead><tr><th>Name</th><th>Type</th><th>Location</th><th>Tags</th></tr></thead>
+<tbody>
+<tr><td>nsg-app</td><td>Network Security Group</td><td>UK South</td><td><code>{"env":"prod"}</code></td></tr>
+<tr><td>nsg-unused</td><td>Network Security Group</td><td>UK South</td><td><code>{"env":"prod"}</code></td></tr>
+<tr><td>vnet-hub</td><td>Virtual Network</td><td>UK South</td><td><code>{"env":"prod"}</code></td></tr>
+</tbody>
+</table>
+</details>
+
+
+
+<section class="website-evidence"><h2>Website screenshots</h2><p>Saved website views from this machine. Capture time is separate from the Azure audit time.</p><article><h3>web-dev</h3><p><code>https://web-dev.azurewebsites.net/</code> · Not captured</p><p>No screenshot saved</p></article></section>
+<p class="meta">Generated by azdocs.</p>
+<script>
+function filterTable(input, id) {
+  const needle = input.value.toLowerCase();
+  for (const row of document.getElementById(id).tBodies[0].rows) {
+    row.style.display = row.textContent.toLowerCase().includes(needle) ? "" : "none";
+  }
+}
+</script>
+
+</body>
+</html>
