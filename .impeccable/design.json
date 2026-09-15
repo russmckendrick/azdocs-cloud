@@ -30,9 +30,9 @@
       "cue": { "fontFamily": "Plex, Segoe UI, system-ui, sans-serif", "fontSize": "0.69rem", "fontWeight": 400, "lineHeight": 1.35, "role": "Scroll and stage cues" }
     },
     "shadows": {
-      "app-stage": "0 48px 120px rgb(0 0 0 / 52%), 0 12px 42px rgb(0 76 126 / 20%)",
-      "pdf-page": "0 16px 38px rgb(0 0 0 / 30%)",
-      "modal": "0 48px 120px rgb(0 0 0 / 58%), 0 12px 42px rgb(0 76 126 / 18%)"
+      "app-stage": "0 48px 120px color-mix(in srgb, var(--void-deep) 52%, transparent), 0 12px 42px color-mix(in srgb, var(--azure-action) 20%, transparent)",
+      "pdf-page": "0 16px 38px color-mix(in srgb, var(--void-deep) 30%, transparent)",
+      "modal": "0 48px 120px color-mix(in srgb, var(--void-deep) 58%, transparent), 0 12px 42px color-mix(in srgb, var(--azure-action) 18%, transparent)"
     },
     "motion": {
       "easeOut": "cubic-bezier(.16, 1, .3, 1)",
