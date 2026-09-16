@@ -11,6 +11,10 @@ import {
   sourceRoot,
   treeDigest,
 } from "./desktop-demo-source.mjs";
+import {
+  findRootRelativeIconPaths,
+  normalizeDemoIconPaths,
+} from "./demo-asset-paths.mjs";
 
 const run = promisify(execFile);
 if (!await exists(path.join(desktopRoot, "package.json"))) {
@@ -45,6 +49,19 @@ await run("pnpm", [
   env: { ...process.env, AZDOCS_SHOWCASE: "1" },
   maxBuffer: 32 * 1024 * 1024,
 });
+
+const normalizedIconFiles = await normalizeDemoIconPaths(demoRoot);
+if (normalizedIconFiles.length > 0) {
+  console.log(
+    `Rebased Azure icon URLs beneath /demo/ in ${normalizedIconFiles.length} generated file${normalizedIconFiles.length === 1 ? "" : "s"}.`,
+  );
+}
+const rootRelativeIconFiles = await findRootRelativeIconPaths(demoRoot);
+if (rootRelativeIconFiles.length > 0) {
+  throw new Error(
+    `The generated showcase still contains root-relative /icons/ URLs in: ${rootRelativeIconFiles.join(", ")}`,
+  );
+}
 
 if (await sourceDigest() !== inputHash) {
   throw new Error("azdocs desktop source changed during the showcase build; run it again.");
