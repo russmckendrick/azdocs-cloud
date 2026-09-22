@@ -1,11 +1,22 @@
 ---
 import demoManifest from "../../public/demo/manifest.json";
+import storyScenes from "../data/story-scenes.json";
+
+// Scenes are keyed by desktop view id; the eyebrow and the nav button the story
+// clicks both use the label the showcase build shipped, so upstream renames
+// carry through (and check:demo fails if a view disappears).
+const navigation: Record<string, string> = demoManifest.navigation;
+const scenes = storyScenes.map((scene, index) => ({
+  ...scene,
+  label: navigation[scene.view],
+  number: String(index + 1).padStart(2, "0"),
+}));
 
 const demoUrl = `/demo/index.html?v=${demoManifest.outputSha256.slice(0, 12)}`;
 const sourceRevision = demoManifest.sourceRevision.slice(0, 12);
 ---
 
-<section class="az-story" id="product" data-product-story data-scene="overview">
+<section class="az-story" id="product" data-product-story data-scene={scenes[0].view}>
   <div class="az-story-sticky">
     <div class="az-story-intro" data-story-intro>
       <p class="az-story-kicker">Azure estate explorer</p>
@@ -19,10 +30,11 @@ const sourceRevision = demoManifest.sourceRevision.slice(0, 12);
 
     <div class="az-theatre" data-story-theatre>
       <div class="az-stage-copy" aria-live="polite">
-        <div data-copy-scene="overview"><span>01 · Overview</span><h2>Start with the estate.</h2><p>The latest stored snapshot, rendered by the current desktop app.</p></div>
-        <div data-copy-scene="map"><span>02 · Map</span><h2>Then follow the connections.</h2><p>Real Azure resources resolve into their saved relationships.</p></div>
-        <div data-copy-scene="findings"><span>03 · Findings</span><h2>Keep every finding tied to evidence.</h2><p>Severity, affected resources, and collected detail stay together.</p></div>
-        <div data-copy-scene="inventory"><span>04 · Inventory</span><h2>Move from shape to detail.</h2><p>Search and inspect the same snapshot without recollecting it.</p></div>
+        {scenes.map((scene, index) => (
+          <div data-copy-scene={scene.view} data-active={index === 0 ? "" : undefined}>
+            <span>{scene.number} · {scene.label}</span><h2>{scene.heading}</h2><p>{scene.copy}</p>
+          </div>
+        ))}
       </div>
 
       <div class="az-explosion" aria-hidden="true">
@@ -40,6 +52,7 @@ const sourceRevision = demoManifest.sourceRevision.slice(0, 12);
           title="Current azdocs desktop application in dark mode with sample Azure data"
           loading="eager"
           data-demo-frame
+          data-story-scenes={JSON.stringify(scenes.map(({ view, label }) => ({ view, label })))}
         ></iframe>
       </div>
 

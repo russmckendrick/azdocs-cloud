@@ -4,6 +4,7 @@ import {
   demoManifestName,
   demoRoot,
   exists,
+  projectRoot,
   sourceDigest,
   sourceRoot,
   treeDigest,
@@ -32,6 +33,13 @@ const rootRelativeIconFiles = await findRootRelativeIconPaths(demoRoot);
 if (rootRelativeIconFiles.length > 0) {
   throw new Error(
     `Desktop showcase contains root-relative /icons/ URLs in ${rootRelativeIconFiles.join(", ")}. Run pnpm build:demo.`,
+  );
+}
+const scenes = JSON.parse(await readFile(path.join(projectRoot, "src/data/story-scenes.json"), "utf8"));
+const missingViews = scenes.map((scene) => scene.view).filter((view) => typeof manifest.navigation?.[view] !== "string");
+if (missingViews.length > 0) {
+  throw new Error(
+    `The landing page scroll story targets desktop views the showcase does not have: ${missingViews.join(", ")}. Update src/data/story-scenes.json or run pnpm build:demo.`,
   );
 }
 const missingAssets = await findMissingDemoAssets(demoRoot);

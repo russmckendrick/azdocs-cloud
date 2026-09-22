@@ -1,0 +1,32 @@
+[
+  {
+    "view": "overview",
+    "heading": "Start with the estate.",
+    "copy": "The latest stored snapshot, rendered by the current desktop app."
+  },
+  {
+    "view": "estate",
+    "heading": "Move from shape to detail.",
+    "copy": "Subscriptions, resource groups and resources from the same snapshot, without recollecting it."
+  },
+  {
+    "view": "topology",
+    "heading": "Then follow the connections.",
+    "copy": "Real Azure resources resolve into their saved relationships."
+  },
+  {
+    "view": "regions",
+    "heading": "See where it all runs.",
+    "copy": "Every region in the snapshot, with the resources deployed to each."
+  },
+  {
+    "view": "findings",
+    "heading": "Keep every finding tied to evidence.",
+    "copy": "Severity, affected resources, and collected detail stay together."
+  },
+  {
+    "view": "governance",
+    "heading": "See what is tagged, and what is not.",
+    "copy": "Tag coverage for every subscription, measured against the same snapshot."
+  }
+]

@@ -1,8 +1,8 @@
 .az-story {
   --app-demo: #101820;
   position: relative;
-  height: 480svh;
-  min-height: 3200px;
+  height: 640svh;
+  min-height: 4200px;
   background: #060f1a;
 }
 
@@ -203,10 +203,7 @@
   transition: opacity 180ms ease, transform 420ms cubic-bezier(.16, 1, .3, 1);
 }
 
-[data-scene="overview"] [data-copy-scene="overview"],
-[data-scene="map"] [data-copy-scene="map"],
-[data-scene="findings"] [data-copy-scene="findings"],
-[data-scene="inventory"] [data-copy-scene="inventory"] {
+.az-stage-copy > div[data-active] {
   opacity: 1;
   transform: none;
 }
@@ -592,7 +589,7 @@
     gap: 34px;
   }
 
-  .az-story { height: 460svh; min-height: 3000px; }
+  .az-story { height: 620svh; min-height: 4000px; }
   .az-theatre { padding-inline: 18px; }
   .az-app-window { width: min(1100px, calc(100vw - 36px)); }
   .az-app-window iframe { height: 610px; }
@@ -606,7 +603,7 @@
 }
 
 @media (max-width: 640px) {
-  .az-story { height: 440svh; min-height: 2800px; }
+  .az-story { height: 600svh; min-height: 3800px; }
   .az-story-sticky { min-height: 600px; }
   .az-story-intro { top: 116px; }
   .az-story-intro h1 { font-size: 3.35rem; }
@@ -634,10 +631,7 @@
     backdrop-filter: blur(12px);
   }
   .az-stage-copy > div { position: static; display: none; }
-  [data-scene="overview"] [data-copy-scene="overview"],
-  [data-scene="map"] [data-copy-scene="map"],
-  [data-scene="findings"] [data-copy-scene="findings"],
-  [data-scene="inventory"] [data-copy-scene="inventory"] { display: block; }
+  .az-stage-copy > div[data-active] { display: block; }
   .export-proof { padding-block: 90px; }
   .export-proof-heading h2,
   .straight-section h2,

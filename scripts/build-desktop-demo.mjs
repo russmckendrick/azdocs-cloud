@@ -111,6 +111,14 @@ async function removeMetadata(directory) {
 }
 await removeMetadata(demoRoot);
 
+// The landing page's scroll story opens desktop views by their nav label. Record
+// the labels this build ships so the site follows upstream renames.
+const labels = JSON.parse(await readFile(path.join(desktopRoot, "src/generated-labels.json"), "utf8"));
+const navigation = labels.desktop?.nav;
+if (!navigation || typeof navigation.overview !== "string") {
+  throw new Error("Could not read desktop.nav labels from desktop/src/generated-labels.json.");
+}
+
 const outputHash = await treeDigest(demoRoot);
 await writeFile(path.join(demoRoot, demoManifestName), `${JSON.stringify({
   sourceRepository: "russmckendrick/azdocs",
@@ -122,6 +130,7 @@ await writeFile(path.join(demoRoot, demoManifestName), `${JSON.stringify({
   base: "/demo/",
   theme: "dark",
   showcase: true,
+  navigation,
   outputSha256: outputHash,
 }, null, 2)}\n`);
 
