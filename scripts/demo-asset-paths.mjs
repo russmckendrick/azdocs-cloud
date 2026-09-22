@@ -1,4 +1,4 @@
-import { readFile, readdir, writeFile } from "node:fs/promises";
+import { access, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const textExtensions = new Set([".css", ".html", ".js", ".mjs"]);
@@ -58,4 +58,41 @@ export async function findRootRelativeIconPaths(root) {
   }
 
   return invalid;
+}
+
+// Any /demo/… URL baked into the generated bundle must resolve to a file in the
+// output. This catches assets that never reached the build (e.g. an upstream
+// asset-sync step that was skipped), not just URLs with the wrong base.
+// Upstream icon folders contain spaces ("app services"), so only quotes,
+// brackets, query/hash and line breaks end a URL.
+const demoAssetUrl = /\/demo\/((?:icons|fonts|assets)\/[^"'`()<>?#\r\n]*[^"'`()<>?#\r\n\s/])/g;
+
+export function referencedDemoAssets(contents) {
+  const found = new Set();
+  for (const match of contents.matchAll(demoAssetUrl)) {
+    let relative = match[1];
+    try {
+      relative = decodeURI(relative);
+    } catch {}
+    found.add(relative);
+  }
+  return found;
+}
+
+export async function findMissingDemoAssets(root) {
+  const missing = new Map();
+
+  for (const relative of await textFiles(root)) {
+    const contents = await readFile(path.join(root, relative), "utf8");
+    for (const asset of referencedDemoAssets(contents)) {
+      if (missing.has(asset)) continue;
+      try {
+        await access(path.join(root, asset));
+      } catch {
+        missing.set(asset, relative);
+      }
+    }
+  }
+
+  return [...missing].map(([asset, file]) => `${asset} (referenced in ${file})`);
 }

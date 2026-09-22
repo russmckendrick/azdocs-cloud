@@ -12,6 +12,7 @@
     "build:demo": "node scripts/build-desktop-demo.mjs",
     "check:demo": "node scripts/check-desktop-demo.mjs",
     "test:demo-assets": "node --test scripts/demo-asset-paths.test.mjs",
+    "smoke:demo": "node scripts/smoke-demo-assets.mjs",
     "prepare:exports": "node scripts/prepare-product-exports.mjs",
     "prepare:report-pages": "node scripts/prepare-report-pages.mjs",
     "refresh:exports": "node scripts/refresh-product-exports.mjs",

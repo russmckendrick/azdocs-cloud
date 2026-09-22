@@ -6,6 +6,10 @@ export const sourceRoot = path.resolve(process.env.AZDOCS_SOURCE ?? "../azdocs")
 export const exportRoot = path.resolve("public/product-exports");
 export const reportName = "azure-estate-report.html";
 export const pdfName = "azure-estate-report.pdf";
+// Theme names come from azdocs' report ThemePack (src/report/theme). The HTML
+// preview keeps Field Report; the downloadable PDF uses the Azure theme.
+export const reportTheme = "field-report";
+export const pdfTheme = "azure";
 export const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
 
 // Include renderer dependencies, embedded assets and the fixture, not timestamps.

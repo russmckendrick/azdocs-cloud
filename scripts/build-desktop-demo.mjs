@@ -12,6 +12,7 @@ import {
   treeDigest,
 } from "./desktop-demo-source.mjs";
 import {
+  findMissingDemoAssets,
   findRootRelativeIconPaths,
   normalizeDemoIconPaths,
 } from "./demo-asset-paths.mjs";
@@ -30,6 +31,19 @@ const { stdout: dirtyOutput } = await run("git", ["status", "--porcelain", "--",
 
 await rm(demoRoot, { recursive: true, force: true });
 await mkdir(demoRoot, { recursive: true });
+
+// azdocs keeps desktop/public/ out of git and fills it from data/ with its own
+// `assets` script, which its `build` script runs first. We call vite directly,
+// so run the same sync here or a clean checkout (CI) ships no icons or fonts.
+const desktopPackage = JSON.parse(await readFile(path.join(desktopRoot, "package.json"), "utf8"));
+if (desktopPackage.scripts?.assets) {
+  console.log("Syncing azdocs desktop assets…");
+  await run("pnpm", ["run", "assets"], {
+    cwd: desktopRoot,
+    env: { ...process.env, AZDOCS_SHOWCASE: "1" },
+    maxBuffer: 32 * 1024 * 1024,
+  });
+}
 
 console.log("Typechecking and building the current azdocs desktop showcase…");
 await run("pnpm", ["exec", "tsc", "--noEmit"], {
@@ -60,6 +74,13 @@ const rootRelativeIconFiles = await findRootRelativeIconPaths(demoRoot);
 if (rootRelativeIconFiles.length > 0) {
   throw new Error(
     `The generated showcase still contains root-relative /icons/ URLs in: ${rootRelativeIconFiles.join(", ")}`,
+  );
+}
+
+const missingAssets = await findMissingDemoAssets(demoRoot);
+if (missingAssets.length > 0) {
+  throw new Error(
+    `The generated showcase references ${missingAssets.length} asset${missingAssets.length === 1 ? "" : "s"} missing from its output:\n  ${missingAssets.slice(0, 20).join("\n  ")}`,
   );
 }
 

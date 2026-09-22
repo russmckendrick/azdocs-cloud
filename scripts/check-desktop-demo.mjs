@@ -8,7 +8,7 @@ import {
   sourceRoot,
   treeDigest,
 } from "./desktop-demo-source.mjs";
-import { findRootRelativeIconPaths } from "./demo-asset-paths.mjs";
+import { findMissingDemoAssets, findRootRelativeIconPaths } from "./demo-asset-paths.mjs";
 
 const manifestPath = path.join(demoRoot, demoManifestName);
 const indexPath = path.join(demoRoot, "index.html");
@@ -32,6 +32,12 @@ const rootRelativeIconFiles = await findRootRelativeIconPaths(demoRoot);
 if (rootRelativeIconFiles.length > 0) {
   throw new Error(
     `Desktop showcase contains root-relative /icons/ URLs in ${rootRelativeIconFiles.join(", ")}. Run pnpm build:demo.`,
+  );
+}
+const missingAssets = await findMissingDemoAssets(demoRoot);
+if (missingAssets.length > 0) {
+  throw new Error(
+    `Desktop showcase references assets missing from public/demo:\n  ${missingAssets.slice(0, 20).join("\n  ")}\nRun pnpm build:demo.`,
   );
 }
 if (await exists(path.join(sourceRoot, "desktop/package.json")) && await sourceDigest() !== manifest.sourceSha256) {

@@ -2,7 +2,7 @@ import { execFile } from "node:child_process";
 import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
-import { digest, exportRoot, pdfName, reportName, sourceDigest, sourceRoot } from "./product-export-source.mjs";
+import { digest, exportRoot, pdfName, pdfTheme, reportName, reportTheme, sourceDigest, sourceRoot } from "./product-export-source.mjs";
 
 const run = promisify(execFile);
 const inputHash = await sourceDigest();
@@ -24,8 +24,8 @@ try {
   ], { cwd: temporary, maxBuffer: 8 * 1024 * 1024 });
   process.stdout.write(rendered.stdout);
   if (await sourceDigest() !== inputHash) throw new Error("azdocs changed during export; run the refresh again.");
-  const html = await readFile(path.join(temporary, "output/preview/field-report/report.html"));
-  const pdf = await readFile(path.join(temporary, "output/preview/field-report/report.pdf"));
+  const html = await readFile(path.join(temporary, "output/preview", reportTheme, "report.html"));
+  const pdf = await readFile(path.join(temporary, "output/preview", pdfTheme, "report.pdf"));
   if (!html.includes("Operational and compliance evidence") || !html.includes("Query provenance")) {
     throw new Error("The rendered report is missing the current evidence sections.");
   }
@@ -43,7 +43,8 @@ try {
     fixture: "tests/common/mod.rs::seed_estate",
     runner: "tests/report_preview.rs::writes_every_theme_in_every_format",
     renderer: "src/report/html.rs",
-    theme: "field-report",
+    theme: reportTheme,
+    pdfTheme,
     output: reportName,
     outputSha256: digest(html),
     pdfOutput: pdfName,

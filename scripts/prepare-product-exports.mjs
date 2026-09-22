@@ -2,7 +2,7 @@ import { execFile } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
-import { digest, exportRoot, pdfName, reportName, sourceDigest, sourceRoot } from "./product-export-source.mjs";
+import { digest, exportRoot, pdfName, pdfTheme, reportName, reportTheme, sourceDigest, sourceRoot } from "./product-export-source.mjs";
 
 const run = promisify(execFile);
 let stale = false;
@@ -15,6 +15,9 @@ try {
   if (digest(html) !== manifest.outputSha256 || digest(pdf) !== manifest.pdfOutputSha256) {
     stale = true;
     reason = "artifact checksum changed";
+  } else if (manifest.theme !== reportTheme || manifest.pdfTheme !== pdfTheme) {
+    stale = true;
+    reason = "export theme changed";
   } else {
     try {
       if (await sourceDigest() !== manifest.sourceSha256) {

@@ -110,3 +110,11 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           packageManager: pnpm
           command: deploy
+
+      - name: "🔎 Verify live demo assets"
+        run: |
+          for attempt in 1 2 3 4 5; do
+            node scripts/smoke-demo-assets.mjs dist/demo https://azdocs.cloud && exit 0
+            sleep 15
+          done
+          exit 1
