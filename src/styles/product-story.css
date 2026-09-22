@@ -113,8 +113,8 @@
   border-radius: 14px;
   background: var(--app-demo);
   box-shadow:
-    0 48px 120px rgb(0 0 0 / 52%),
-    0 12px 42px rgb(0 76 126 / 20%);
+    0 48px 120px color-mix(in srgb, var(--void-deep) 52%, transparent),
+    0 12px 42px color-mix(in srgb, var(--azure-action) 20%, transparent);
   opacity: calc(.12 + var(--frame-in, 0) * .88);
   pointer-events: none;
   transform: translateY(calc((1 - var(--frame-in, 0)) * 36vh - var(--frame-in, 0) * 24px)) scale(calc(.62 + var(--frame-in, 0) * .38));

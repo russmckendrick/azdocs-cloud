@@ -1,14 +1,14 @@
 {
   "sourceRepository": "russmckendrick/azdocs",
-  "sourceRevision": "953118e087c5cc972c8e889cc81ed19e4c5c57a0",
-  "sourceSha256": "6f383d6507ad3500ecc1c26ad84c52752d9b0272dc80ea9e27074755c0499d95",
-  "generatedAt": "2026-09-15T17:34:05.753Z",
+  "sourceRevision": "40837ea86db912f1e5f02c15270ba3e391c2cffe",
+  "sourceSha256": "c298e0054bbdc4e9a246615a88f91082cce0d8b4dff6cbed0635300fc55b2507",
+  "generatedAt": "2026-09-22T20:12:44.260Z",
   "fixture": "tests/common/mod.rs::seed_estate",
   "runner": "tests/report_preview.rs::writes_every_theme_in_every_format",
   "renderer": "src/report/html.rs",
   "theme": "field-report",
   "output": "azure-estate-report.html",
-  "outputSha256": "35df1d5b6e4525a73e042689bcb0526f4f77e286f9a329bbd7193ab719358dca",
+  "outputSha256": "5db6853cb48eaf1db72dbdd662b7f71a512034c0f619ce47b230191c7abe7af2",
   "pdfOutput": "azure-estate-report.pdf",
-  "pdfOutputSha256": "a39df96f985acd197d8a98d356442c33ed0af1e75e33d5554cef9da1f9e785f1"
+  "pdfOutputSha256": "385d9cb599e9428deb0077cddf2b0a3fb08fd12ef9020342fc33200716089eee"
 }
