@@ -77,11 +77,13 @@
 }
 
 .az-theatre {
+  /* The scene caption sits in a band below the app window, never over it. */
+  --caption-band: 214px;
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
-  padding: 108px 30px 96px;
+  padding: 100px 30px var(--caption-band);
 }
 
 .az-explosion {
@@ -176,8 +178,10 @@
 
 .az-app-window iframe {
   width: 100%;
-  height: min(69vw, 720px);
-  min-height: 560px;
+  /* Fit the viewport height as well as its width: header, browser bar and
+     caption band come off first, plus the 24px lift the window settles on. */
+  height: clamp(400px, min(69vw, calc(100svh - 100px - var(--caption-band) - 46px + 24px)), 720px);
+  min-height: 0;
   display: block;
   border: 0;
   background: var(--app-demo);

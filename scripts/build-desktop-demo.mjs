@@ -88,13 +88,29 @@ if (await sourceDigest() !== inputHash) {
   throw new Error("azdocs desktop source changed during the showcase build; run it again.");
 }
 
+// The landing page's scroll story opens desktop views by their nav label. Record
+// the labels this build ships so the site follows upstream renames.
+const labels = JSON.parse(await readFile(path.join(desktopRoot, "src/generated-labels.json"), "utf8"));
+const navigation = labels.desktop?.nav;
+if (!navigation || typeof navigation.overview !== "string") {
+  throw new Error("Could not read desktop.nav labels from desktop/src/generated-labels.json.");
+}
+
+// The showcase is a read-only tour: hide the nav entries for views that write
+// files or change preferences. azdocs has no build flag for this, so the
+// generated page carries its own rule, matched on the app's nav labels.
+const hiddenViews = ["exports", "settings"];
+const hiddenNavRule = `${hiddenViews
+  .map((view) => `.side-nav .nav-row[aria-label=${JSON.stringify(navigation[view])}]`)
+  .join(",\n      ")} { display: none !important; }`;
+
 const indexPath = path.join(demoRoot, "index.html");
 let html = await readFile(indexPath, "utf8");
 html = html
   .replace('<html lang="en">', '<html lang="en" data-theme="dark">')
   .replace(/\s*<meta name="color-scheme"[^>]*>/g, "")
   .replace(/\s*<meta name="theme-color"[^>]*>/g, "")
-  .replace("<head>", `<head>\n    <meta name="color-scheme" content="dark" />\n    <meta name="theme-color" content="#101820" />\n    <script data-azdocs-showcase-theme>\n      document.documentElement.dataset.theme = "dark";\n      try { localStorage.setItem("azdocs-theme", "dark"); } catch {}\n    </script>`);
+  .replace("<head>", `<head>\n    <meta name="color-scheme" content="dark" />\n    <meta name="theme-color" content="#101820" />\n    <script data-azdocs-showcase-theme>\n      document.documentElement.dataset.theme = "dark";\n      try { localStorage.setItem("azdocs-theme", "dark"); } catch {}\n    </script>\n    <style data-azdocs-showcase-nav>\n      ${hiddenNavRule}\n    </style>`);
 
 if (!html.includes('data-theme="dark"') || !html.includes("/demo/assets/")) {
   throw new Error("The generated showcase is missing its forced dark theme or /demo/ asset base.");
@@ -111,14 +127,6 @@ async function removeMetadata(directory) {
 }
 await removeMetadata(demoRoot);
 
-// The landing page's scroll story opens desktop views by their nav label. Record
-// the labels this build ships so the site follows upstream renames.
-const labels = JSON.parse(await readFile(path.join(desktopRoot, "src/generated-labels.json"), "utf8"));
-const navigation = labels.desktop?.nav;
-if (!navigation || typeof navigation.overview !== "string") {
-  throw new Error("Could not read desktop.nav labels from desktop/src/generated-labels.json.");
-}
-
 const outputHash = await treeDigest(demoRoot);
 await writeFile(path.join(demoRoot, demoManifestName), `${JSON.stringify({
   sourceRepository: "russmckendrick/azdocs",
@@ -131,6 +139,7 @@ await writeFile(path.join(demoRoot, demoManifestName), `${JSON.stringify({
   theme: "dark",
   showcase: true,
   navigation,
+  hiddenViews,
   outputSha256: outputHash,
 }, null, 2)}\n`);
 

@@ -35,11 +35,16 @@ if (rootRelativeIconFiles.length > 0) {
     `Desktop showcase contains root-relative /icons/ URLs in ${rootRelativeIconFiles.join(", ")}. Run pnpm build:demo.`,
   );
 }
+const hiddenViews = manifest.hiddenViews ?? [];
+if (!markup.includes("data-azdocs-showcase-nav") || !hiddenViews.includes("exports") || !hiddenViews.includes("settings")) {
+  throw new Error("Desktop showcase does not hide the Exports and Settings views. Run pnpm build:demo.");
+}
 const scenes = JSON.parse(await readFile(path.join(projectRoot, "src/data/story-scenes.json"), "utf8"));
-const missingViews = scenes.map((scene) => scene.view).filter((view) => typeof manifest.navigation?.[view] !== "string");
+const missingViews = scenes.map((scene) => scene.view)
+  .filter((view) => typeof manifest.navigation?.[view] !== "string" || hiddenViews.includes(view));
 if (missingViews.length > 0) {
   throw new Error(
-    `The landing page scroll story targets desktop views the showcase does not have: ${missingViews.join(", ")}. Update src/data/story-scenes.json or run pnpm build:demo.`,
+    `The landing page scroll story targets desktop views the showcase does not show: ${missingViews.join(", ")}. Update src/data/story-scenes.json or run pnpm build:demo.`,
   );
 }
 const missingAssets = await findMissingDemoAssets(demoRoot);
